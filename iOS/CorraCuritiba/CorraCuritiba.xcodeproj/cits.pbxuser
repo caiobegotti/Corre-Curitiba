@@ -1,0 +1,91 @@
+// !$*UTF8*$!
+{
+	460FDD04161DEB3F00E59FAC /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 46EFFE13161E0901006C85D7 /* CorraCuritiba */;
+		activeTarget = 460FDD0C161DEB3F00E59FAC /* CorraCuritiba */;
+		codeSenseManager = 46EFFE28161E090B006C85D7 /* Code sense */;
+		executables = (
+			46EFFE13161E0901006C85D7 /* CorraCuritiba */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					356,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 371067137;
+			PBXWorkspaceStateSaveDate = 371067137;
+		};
+		sourceControlManager = 46EFFE27161E090B006C85D7 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	460FDD0C161DEB3F00E59FAC /* CorraCuritiba */ = {
+		activeExec = 0;
+		executables = (
+			46EFFE13161E0901006C85D7 /* CorraCuritiba */,
+		);
+	};
+	460FDD39161DEB3F00E59FAC /* CorraCuritibaTests */ = {
+		activeExec = 0;
+	};
+	46EFFE13161E0901006C85D7 /* CorraCuritiba */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = CorraCuritiba;
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	46EFFE27161E090B006C85D7 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	46EFFE28161E090B006C85D7 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+}
