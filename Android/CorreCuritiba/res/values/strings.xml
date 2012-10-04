@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="app_name">Corre Curitiba</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Corre Curitiba</string>
+    <string name="subtitle">Corridas de Rua</string>
+    <string name="download_error">Não foi possível obter informações das corridas.</string>
+
+</resources>
