@@ -9,6 +9,7 @@
 #import sys
 #sys.path.append('/home/caio/py_libs/')
 
+import glob
 import codecs
 import json
 import re
@@ -42,9 +43,16 @@ def calendar():
         calendar[v] = info
     return calendar
 
-data = calendar()
+def available():
+    files = glob.glob('*.json')
+    return files
 
-filename = '%s.%s.json' % (stamp.year, stamp.month)
-with codecs.open(filename, 'w', 'utf-8') as output:
-    output.write(json.dumps(data, indent=4))
-    output.close()
+def save():
+    data = calendar()
+    filename = '%s.%s.json' % (stamp.year, stamp.month)
+    with codecs.open(filename, 'w', 'utf-8') as output:
+        output.write(json.dumps(data, indent=4))
+        output.close()
+
+if __name__ == "__main__":
+    save()
