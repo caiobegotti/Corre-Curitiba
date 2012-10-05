@@ -11,10 +11,20 @@ import scraper
 
 urls = (
     '/1/available', 'oneAvailable',
-    '/1/json', 'oneJSON'
+    '/1/json', 'oneJSON',
+    '/', 'legacy'
 )
 
 app = web.application(urls, globals(), True)
+
+class legacy():
+    def GET(self):
+        filename = scraper.available()[0]
+        web.header('content-type', 'application/json')
+        with open(filename, 'r') as data:
+            res = json.dumps(json.load(data), indent=4)
+            data.close()
+            return res
 
 class oneAvailable():
     def GET(self):
