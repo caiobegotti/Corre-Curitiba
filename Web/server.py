@@ -6,6 +6,12 @@
 import json
 import web
 
+# dreamhost stuff below
+#from __future__ import with_statement
+
+#import sys
+#sys.path.append('/home/caio/py_libs/')
+
 # our own stuff
 import scraper
 
