@@ -1,4 +1,4 @@
 Options +ExecCGI 
 AddHandler fastcgi-script .py
 AddHandler cgi-script .py 
-DirectoryIndex calendario_corridas_trainer.py/
+DirectoryIndex server.py/
