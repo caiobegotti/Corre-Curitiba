@@ -44,12 +44,12 @@ def calendar():
     return calendar
 
 def available():
-    files = glob.glob('*.json')
+    files = glob.glob('*.V1.json')
     return files
 
 def save():
     data = calendar()
-    filename = '%s.%s.json' % (stamp.year, stamp.month)
+    filename = '%s.%s.V1.json' % (stamp.year, stamp.month)
     with codecs.open(filename, 'w', 'utf-8') as output:
         output.write(json.dumps(data, indent=4))
         output.close()
