@@ -37,6 +37,11 @@
 		460FDDA4161DF18300E59FAC /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 460FDD96161DF18300E59FAC /* SBJsonTokeniser.m */; };
 		460FDDA5161DF18300E59FAC /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 460FDD98161DF18300E59FAC /* SBJsonUTF8Stream.m */; };
 		460FDDA6161DF18300E59FAC /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 460FDD9A161DF18300E59FAC /* SBJsonWriter.m */; };
+		464C17B8161F0E7A0087FAFA /* CCFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = 464C17B7161F0E7A0087FAFA /* CCFetch.m */; };
+		464C17BB161F1C810087FAFA /* CCEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 464C17BA161F1C810087FAFA /* CCEvents.m */; };
+		464C181016246A920087FAFA /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 464C180F16246A920087FAFA /* Icon.png */; };
+		464C181216246AAE0087FAFA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 464C181116246AAE0087FAFA /* Default.png */; };
+		464C181416246AE90087FAFA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464C181316246AE80087FAFA /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +105,13 @@
 		460FDD98161DF18300E59FAC /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		460FDD99161DF18300E59FAC /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		460FDD9A161DF18300E59FAC /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		464C17B6161F0E7A0087FAFA /* CCFetch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFetch.h; sourceTree = "<group>"; };
+		464C17B7161F0E7A0087FAFA /* CCFetch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFetch.m; sourceTree = "<group>"; };
+		464C17B9161F1C810087FAFA /* CCEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEvents.h; sourceTree = "<group>"; };
+		464C17BA161F1C810087FAFA /* CCEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCEvents.m; sourceTree = "<group>"; };
+		464C180F16246A920087FAFA /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		464C181116246AAE0087FAFA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		464C181316246AE80087FAFA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +141,9 @@
 		460FDD02161DEB3F00E59FAC = {
 			isa = PBXGroup;
 			children = (
+				464C181316246AE80087FAFA /* Default-568h@2x.png */,
+				464C181116246AAE0087FAFA /* Default.png */,
+				464C180F16246A920087FAFA /* Icon.png */,
 				460FDD17161DEB3F00E59FAC /* CorraCuritiba */,
 				460FDD41161DEB3F00E59FAC /* CorraCuritibaTests */,
 				460FDD10161DEB3F00E59FAC /* Frameworks */,
@@ -167,6 +182,10 @@
 				460FDD2C161DEB3F00E59FAC /* MainStoryboard_iPad.storyboard */,
 				460FDD2F161DEB3F00E59FAC /* CCMasterViewController.h */,
 				460FDD30161DEB3F00E59FAC /* CCMasterViewController.m */,
+				464C17B6161F0E7A0087FAFA /* CCFetch.h */,
+				464C17B7161F0E7A0087FAFA /* CCFetch.m */,
+				464C17B9161F1C810087FAFA /* CCEvents.h */,
+				464C17BA161F1C810087FAFA /* CCEvents.m */,
 				460FDD32161DEB3F00E59FAC /* CCDetailViewController.h */,
 				460FDD33161DEB3F00E59FAC /* CCDetailViewController.m */,
 				460FDD18161DEB3F00E59FAC /* Supporting Files */,
@@ -318,6 +337,9 @@
 				460FDD28161DEB3F00E59FAC /* Default-568h@2x.png in Resources */,
 				460FDD2B161DEB3F00E59FAC /* MainStoryboard_iPhone.storyboard in Resources */,
 				460FDD2E161DEB3F00E59FAC /* MainStoryboard_iPad.storyboard in Resources */,
+				464C181016246A920087FAFA /* Icon.png in Resources */,
+				464C181216246AAE0087FAFA /* Default.png in Resources */,
+				464C181416246AE90087FAFA /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +390,8 @@
 				460FDDA4161DF18300E59FAC /* SBJsonTokeniser.m in Sources */,
 				460FDDA5161DF18300E59FAC /* SBJsonUTF8Stream.m in Sources */,
 				460FDDA6161DF18300E59FAC /* SBJsonWriter.m in Sources */,
+				464C17B8161F0E7A0087FAFA /* CCFetch.m in Sources */,
+				464C17BB161F1C810087FAFA /* CCEvents.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -4,17 +4,15 @@
    version = "1.0">
    <FileBreakpoints>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "CorraCuritiba/CCMasterViewController.m"
-         timestampString = "371066668.698912"
+         filePath = "CorraCuritiba/CCJson.m"
+         timestampString = "371074620.646909"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "88"
-         endingLineNumber = "88"
-         landmarkName = "@implementation CCMasterViewController"
-         landmarkType = "3">
+         startingLineNumber = "3"
+         endingLineNumber = "3">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
