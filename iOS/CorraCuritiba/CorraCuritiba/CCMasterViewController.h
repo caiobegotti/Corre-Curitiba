@@ -11,10 +11,14 @@
 @class CCDetailViewController;
 
 @interface CCMasterViewController : UITableViewController {
+	/*
 	UIActivityIndicatorView *activity;
+	*/
+	NSMutableArray *calendar;
 	NSMutableData *responseData;
 }
 
 @property (strong, nonatomic) CCDetailViewController *detailViewController;
+@property (nonatomic, retain) NSMutableArray *resultArray;
 
 @end

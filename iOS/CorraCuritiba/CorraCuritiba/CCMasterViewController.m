@@ -10,7 +10,11 @@
 
 #import "CCDetailViewController.h"
 
-#import "SBJson/SBJson.h"
+#import "CCFetch.h"
+
+#import "CCEvents.h"
+
+#import "SBJson.h"
 
 @interface CCMasterViewController () {
     NSMutableArray *_objects;
@@ -30,67 +34,30 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-	//self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    //self.navigationItem.rightBarButtonItem = addButton;
-	
+    [super viewDidLoad];	
 	self.detailViewController = (CCDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 	self.title = @"Corridas do mês";
 	
-	responseData = [NSMutableData data];
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://caio.ueberalles.net/corridas/"]];
-	[[NSURLConnection alloc] initWithRequest:request delegate:self];
-
-    activity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 32.0f, 32.0f)];
+    /*
+	activity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 32.0f, 32.0f)];
     [activity setCenter:CGPointMake(160.0f, 208.0f)];
     [activity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
-	
     [self.tableView addSubview:activity];
+	
 
 	[self.view setUserInteractionEnabled: NO];
 	[activity startAnimating];
-}
+	*/
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-	[responseData setLength:0];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-	[responseData appendData:data];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-	NSLog(@"Calendário em manutenção, tente novamente mais tarde!");
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {	
-	NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-	NSLog(@"Dados... %@", responseString);
+	CCFetch *fetch = [CCFetch new];
+	[fetch populateCalendar];
 	
-	NSError *error;
-	SBJsonParser *json = [SBJsonParser new];
-	NSArray *calendar = [json objectWithString:responseString error:&error];
-	
-	if (calendar == nil)
-		NSLog(@"Calendário não foi carregado corretamente!");
-	else {
-		[self.view setUserInteractionEnabled: YES];
-		[activity stopAnimating];
-		NSLog(@"Tamanho... %d", [calendar count]);
-	}
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forceReload) name:@"reloadRequest" object:nil];
 }
 
-/* seems we don't need these when using arc mode, automatic referencing count
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-	[connection release];
+- (void)viewDidUnload {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
-- (void)dealloc {
-    [super dealloc];
-}
-*/
 
 - (void)didReceiveMemoryWarning
 {
@@ -110,6 +77,10 @@
 
 #pragma mark - Table View
 
+- (void)forceReload {
+	[self.tableView reloadData];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -117,15 +88,19 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+    return [[[CCEvents sharedEvents] getEvents] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    NSDate *object = _objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    //NSDate *object = _objects[indexPath.row];
+    //cell.textLabel.text = [object description];
+	
+	NSMutableArray *items = [[CCEvents sharedEvents] getEvents];
+	NSMutableDictionary *keys = [items objectAtIndex:indexPath.row];
+	cell.textLabel.text = [keys objectForKey:@"Nome:"];
     return cell;
 }
 
