@@ -16,7 +16,8 @@
 
 static CCEvents* _sharedEvents = nil;
 
-+(CCEvents*)sharedEvents {
++(CCEvents*)sharedEvents
+{
 	@synchronized([CCEvents class]) {
 		if (!_sharedEvents) {
 			[[self alloc] init];
@@ -26,7 +27,8 @@ static CCEvents* _sharedEvents = nil;
 	return nil;
 }
 
-+(id)alloc {
++(id)alloc
+{
 	@synchronized([CCEvents class]) {
 		NSAssert(_sharedEvents == nil, @"Tentativa de alocar segunda instância do singleton");
 		_sharedEvents = [super alloc];
@@ -34,7 +36,8 @@ static CCEvents* _sharedEvents = nil;
 	}
 }
 
--(id)init {
+-(id)init
+{
 	self = [super init];
 	if (self != nil) {
 		NSLog(@"Init not nil");
@@ -43,11 +46,13 @@ static CCEvents* _sharedEvents = nil;
 	return self;
 }
 
--(NSMutableArray*)getEvents {
+-(NSMutableArray*)getEvents
+{
     return events;
 }
 
--(void) setEvents:(NSDictionary *)venues {
+-(void)setEvents:(NSDictionary *)venues
+{
 	for (NSDictionary *list in venues)
 	{
 		NSDictionary *entry = [venues objectForKey:list];

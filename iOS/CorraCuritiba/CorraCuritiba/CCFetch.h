@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CCFetch : NSObject {
+@interface CCFetch : NSObject
+{
 	NSMutableData *responseData;
 }
 

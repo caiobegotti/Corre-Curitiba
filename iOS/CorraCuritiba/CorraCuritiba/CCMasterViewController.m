@@ -16,11 +16,6 @@
 
 #import "SBJson.h"
 
-@interface CCMasterViewController () {
-    NSMutableArray *_objects;
-}
-@end
-
 @implementation CCMasterViewController
 
 - (void)awakeFromNib
@@ -38,46 +33,37 @@
 	self.detailViewController = (CCDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 	self.title = @"Corridas do mês";
 	
-    /*
+    // Visual cue that there are stuff still being loaded
 	activity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 32.0f, 32.0f)];
     [activity setCenter:CGPointMake(160.0f, 208.0f)];
     [activity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
     [self.tableView addSubview:activity];
-	
-
 	[self.view setUserInteractionEnabled: NO];
 	[activity startAnimating];
-	*/
-
+	
+	// Dispatch the JSON downloader and parser
+	// to populate NSMutableArray *events from CCEvents
 	CCFetch *fetch = [CCFetch new];
 	[fetch populateCalendar];
 	
+	// Registers a reloader for the tableView data
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forceReload) name:@"reloadRequest" object:nil];
 }
 
-- (void)viewDidUnload {
+- (void)viewDidUnload
+{
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)insertNewObject:(id)sender
-{
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
-    }
-    [_objects insertObject:[NSDate date] atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 #pragma mark - Table View
 
-- (void)forceReload {
+- (void)forceReload
+{
 	[self.tableView reloadData];
 }
 
@@ -94,53 +80,41 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-
-    //NSDate *object = _objects[indexPath.row];
-    //cell.textLabel.text = [object description];
-	
+		
 	NSMutableArray *items = [[CCEvents sharedEvents] getEvents];
 	NSMutableDictionary *keys = [items objectAtIndex:indexPath.row];
+	
+	// Visual cue that we're done loading web data and ready to make them visible in cells
+	[self.view setUserInteractionEnabled: YES];
+	[activity stopAnimating];
+	
+	// Populate the cell for indexPath.row
 	cell.textLabel.text = [keys objectForKey:@"Nome:"];
-    return cell;
+	cell.detailTextLabel.text = [keys objectForKey:@"Data:"];
+
+	return cell;
+}
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:UITableViewCellStyleSubtitle];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    return NO;
+	return NO;
 }
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }
-}
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NSDate *object = _objects[indexPath.row];
-        self.detailViewController.detailItem = object;
+		NSMutableArray *items = [[CCEvents sharedEvents] getEvents];
+		NSMutableDictionary *selected = [items objectAtIndex:indexPath.row];
+        self.detailViewController.detailItem = selected;
     }
 }
 
@@ -148,8 +122,9 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = _objects[indexPath.row];
-        [[segue destinationViewController] setDetailItem:object];
+		NSMutableArray *items = [[CCEvents sharedEvents] getEvents];
+		NSMutableDictionary *selected = [items objectAtIndex:indexPath.row];
+        [[segue destinationViewController] setDetailItem:selected];
     }
 }
 
