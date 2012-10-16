@@ -36,7 +36,6 @@
 {
     [super viewDidLoad];
 	self.detailViewController = (CCDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     
     // Visual cue that there are stuff still being loaded
 	activity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 32.0f, 32.0f)];
@@ -83,6 +82,38 @@
 	[self.tableView reloadData];
 }
 
+/*
+// UNUSED
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    NSArray *set = [[CCDataSections alloc] getDataSections];
+    return [set count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSArray *set = [[CCDataSections alloc] getDataSections];
+    return [set objectAtIndex:section];
+}
+
+// TODO
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{    
+    NSArray *data = [[CCData sharedData] getData];
+    CCEvent *event = [[CCEvent alloc] initWithParam:section];
+
+    NSMutableArray *sections = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary *entry in data) {
+        if ([[entry objectForKey:@"Data:"] isEqualToString:event.date]) {
+            [sections addObject:[entry objectForKey:@"Data:"]];
+        }
+    }
+    
+    return [sections count];
+}
+*/
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -90,7 +121,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //return _objects.count;
     return [[[CCData sharedData] getData] count];
 }
 
@@ -102,12 +132,14 @@
 	[self.view setUserInteractionEnabled: YES];
 	[activity stopAnimating];
 	
-	// Populate the cell for indexPath.row
-    CCEvent *event = [[CCEvent alloc] initWithParam:indexPath];
-    
-	cell.textLabel.text = event.name;
-	cell.detailTextLabel.text = event.distance;
+    CCEvent *event = [[CCEvent alloc] initWithParam:[indexPath row]];
         
+    NSString *subtitle;
+    subtitle = [NSString stringWithFormat:@"%1$@ — %2$@", event.date, event.distance];
+    
+	cell.detailTextLabel.text = subtitle;
+    cell.textLabel.text = event.name;
+    
 	return cell;
 }
 

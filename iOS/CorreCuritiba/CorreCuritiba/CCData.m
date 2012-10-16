@@ -46,11 +46,6 @@ static CCData* _sharedData = nil;
 	return self;
 }
 
--(NSMutableArray*)getData
-{
-    return data;
-}
-
 -(void)populateData:(NSDictionary *)json
 {
 	for (NSDictionary *list in json)
@@ -60,6 +55,38 @@ static CCData* _sharedData = nil;
 	}
 	NSNotification *notify = [NSNotification notificationWithName:@"reloadRequest" object:self];
 	[[NSNotificationCenter defaultCenter] postNotification:notify];
+}
+
+-(NSMutableArray*)getData
+{
+    NSSortDescriptor *sortDesc = [[NSSortDescriptor alloc] initWithKey:@"Data:" ascending:YES];
+    [data sortUsingDescriptors:[NSArray arrayWithObject:sortDesc]];
+    return data;
+}
+
+@end
+
+
+@implementation CCDataSections
+
+-(NSArray *)getDataSections {
+    NSArray *data = [[CCData sharedData] getData];
+    NSMutableArray *sections = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary *entry in data) {
+        [sections addObject:[entry objectForKey:@"Data:"]];
+    }
+    
+    
+    NSMutableArray *unique = [NSMutableArray array];
+    
+    for (id obj in sections) {
+        if (![unique containsObject:obj]) {
+            [unique addObject:obj];
+        }
+    }
+
+    return unique;
 }
 
 @end

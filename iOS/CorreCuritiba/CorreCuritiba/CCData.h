@@ -16,10 +16,16 @@
 @property (nonatomic, retain) NSMutableArray *data;
 
 -(id)init;
--(NSMutableArray*)getData;
 -(void)populateData:(NSDictionary *)json;
+-(NSMutableArray*)getData;
 
 // Singleton so that we can get events from anywhere in the app
 +(CCData*)sharedData;
+
+@end
+
+@interface CCDataSections : NSObject
+
+-(NSArray *)getDataSections;
 
 @end

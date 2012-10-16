@@ -28,6 +28,6 @@
 @property (nonatomic, retain) NSString *description;
 @property (nonatomic, retain) NSString *link;
 
--(id)initWithParam:(NSIndexPath *)indexPath;
+-(id)initWithParam:(NSInteger)selected;
 
 @end
