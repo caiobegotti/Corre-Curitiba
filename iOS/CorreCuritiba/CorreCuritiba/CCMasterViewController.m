@@ -14,8 +14,6 @@
 
 #import "CCData.h"
 
-#import "SBJson.h"
-
 @interface CCMasterViewController () {
     NSMutableArray *_objects;
 }

@@ -10,8 +10,6 @@
 
 #import "CCData.h"
 
-#import "SBJson/SBJson.h"
-
 @implementation CCFetch
 
 #pragma mark - Json
@@ -35,16 +33,14 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-	NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-	NSError *error;
-	SBJsonParser *json = [SBJsonParser new];
-	NSDictionary *venues = [json objectWithString:responseString error:&error];
+    NSError *error = nil;
+ 	NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&error];
     
-	if (venues == nil) {
+	if (json == nil) {
 		NSLog(@"Calendário não foi carregado corretamente!");
 		NSLog(@"Erro: %@", error);
 	} else {
-		[[CCData sharedData] populateData:venues];
+		[[CCData sharedData] populateData:json];
 	}
 }
 
