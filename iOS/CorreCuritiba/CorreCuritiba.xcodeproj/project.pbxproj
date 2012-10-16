@@ -24,7 +24,6 @@
 		46878AF716260EC2005C9B59 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46878AF516260EC2005C9B59 /* MainStoryboard_iPad.storyboard */; };
 		46878AFA16260EC2005C9B59 /* CCMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46878AF916260EC2005C9B59 /* CCMasterViewController.m */; };
 		46878AFD16260EC2005C9B59 /* CCDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46878AFC16260EC2005C9B59 /* CCDetailViewController.m */; };
-		46878B0516260EF5005C9B59 /* CCEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 46878B0416260EF5005C9B59 /* CCEvents.m */; };
 		46878B0816260F01005C9B59 /* CCFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = 46878B0716260F01005C9B59 /* CCFetch.m */; };
 		46878B2316260F80005C9B59 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 46878B0B16260F80005C9B59 /* NSObject+SBJson.m */; };
 		46878B2416260F80005C9B59 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 46878B0E16260F80005C9B59 /* SBJsonParser.m */; };
@@ -38,6 +37,7 @@
 		46878B2C16260F80005C9B59 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 46878B1E16260F80005C9B59 /* SBJsonTokeniser.m */; };
 		46878B2D16260F80005C9B59 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 46878B2016260F80005C9B59 /* SBJsonUTF8Stream.m */; };
 		46878B2E16260F80005C9B59 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 46878B2216260F80005C9B59 /* SBJsonWriter.m */; };
+		46B02FF5162DBE910001F5DE /* CCData.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B02FF4162DBE910001F5DE /* CCData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,8 +64,6 @@
 		46878AF916260EC2005C9B59 /* CCMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCMasterViewController.m; sourceTree = "<group>"; };
 		46878AFB16260EC2005C9B59 /* CCDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCDetailViewController.h; sourceTree = "<group>"; };
 		46878AFC16260EC2005C9B59 /* CCDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCDetailViewController.m; sourceTree = "<group>"; };
-		46878B0316260EF5005C9B59 /* CCEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEvents.h; sourceTree = "<group>"; };
-		46878B0416260EF5005C9B59 /* CCEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCEvents.m; sourceTree = "<group>"; };
 		46878B0616260F01005C9B59 /* CCFetch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFetch.h; sourceTree = "<group>"; };
 		46878B0716260F01005C9B59 /* CCFetch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFetch.m; sourceTree = "<group>"; };
 		46878B0A16260F80005C9B59 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
@@ -93,6 +91,8 @@
 		46878B2016260F80005C9B59 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		46878B2116260F80005C9B59 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		46878B2216260F80005C9B59 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		46B02FF3162DBE910001F5DE /* CCData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCData.h; sourceTree = "<group>"; };
+		46B02FF4162DBE910001F5DE /* CCData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,8 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				46878B0916260F80005C9B59 /* SBJson */,
-				46878B0316260EF5005C9B59 /* CCEvents.h */,
-				46878B0416260EF5005C9B59 /* CCEvents.m */,
+				46B02FF3162DBE910001F5DE /* CCData.h */,
+				46B02FF4162DBE910001F5DE /* CCData.m */,
 				46878B0616260F01005C9B59 /* CCFetch.h */,
 				46878B0716260F01005C9B59 /* CCFetch.m */,
 				46878AF216260EC2005C9B59 /* MainStoryboard_iPhone.storyboard */,
@@ -291,7 +291,6 @@
 				46878AEB16260EC2005C9B59 /* CCAppDelegate.m in Sources */,
 				46878AFA16260EC2005C9B59 /* CCMasterViewController.m in Sources */,
 				46878AFD16260EC2005C9B59 /* CCDetailViewController.m in Sources */,
-				46878B0516260EF5005C9B59 /* CCEvents.m in Sources */,
 				46878B0816260F01005C9B59 /* CCFetch.m in Sources */,
 				46878B2316260F80005C9B59 /* NSObject+SBJson.m in Sources */,
 				46878B2416260F80005C9B59 /* SBJsonParser.m in Sources */,
@@ -305,6 +304,7 @@
 				46878B2C16260F80005C9B59 /* SBJsonTokeniser.m in Sources */,
 				46878B2D16260F80005C9B59 /* SBJsonUTF8Stream.m in Sources */,
 				46878B2E16260F80005C9B59 /* SBJsonWriter.m in Sources */,
+				46B02FF5162DBE910001F5DE /* CCData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
