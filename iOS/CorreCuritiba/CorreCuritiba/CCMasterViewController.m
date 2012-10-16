@@ -171,9 +171,8 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-		NSMutableArray *items = [[CCData sharedData] getData];
-		NSMutableDictionary *selected = [items objectAtIndex:indexPath.row];
-        [[segue destinationViewController] setDetailItem:selected];
+        CCEvent *event = [[CCEvent alloc] initWithParam:[indexPath row]];
+        [[segue destinationViewController] setDetailItem:event];
     }
 }
 
