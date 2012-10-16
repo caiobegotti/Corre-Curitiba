@@ -14,6 +14,8 @@
 
 #import "CCData.h"
 
+#import "CCEvent.h"
+
 @interface CCMasterViewController () {
     NSMutableArray *_objects;
 }
@@ -96,17 +98,16 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-	NSMutableArray *items = [[CCData sharedData] getData];
-	NSMutableDictionary *keys = [items objectAtIndex:indexPath.row];
-	
 	// Visual cue that we're done loading web data and ready to make them visible in cells
 	[self.view setUserInteractionEnabled: YES];
 	[activity stopAnimating];
 	
 	// Populate the cell for indexPath.row
-	cell.textLabel.text = [keys objectForKey:@"Nome:"];
-	cell.detailTextLabel.text = [keys objectForKey:@"Distância:"];
+    CCEvent *event = [[CCEvent alloc] initWithParam:indexPath];
     
+	cell.textLabel.text = event.name;
+	cell.detailTextLabel.text = event.distance;
+        
 	return cell;
 }
 

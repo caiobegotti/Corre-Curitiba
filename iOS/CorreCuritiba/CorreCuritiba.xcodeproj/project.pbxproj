@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4621F27B162DC72D00AA0506 /* CCEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4621F27A162DC72D00AA0506 /* CCEvent.m */; };
 		468368C11626147C003734F8 /* flag.png in Resources */ = {isa = PBXBuildFile; fileRef = 468368C01626147C003734F8 /* flag.png */; };
 		468368C7162616D3003734F8 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 468368C6162616D3003734F8 /* Icon-Small.png */; };
 		468368C9162616D7003734F8 /* Icon-Big.png in Resources */ = {isa = PBXBuildFile; fileRef = 468368C8162616D7003734F8 /* Icon-Big.png */; };
@@ -29,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4621F279162DC72D00AA0506 /* CCEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEvent.h; sourceTree = "<group>"; };
+		4621F27A162DC72D00AA0506 /* CCEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCEvent.m; sourceTree = "<group>"; };
 		468368C01626147C003734F8 /* flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flag.png; sourceTree = "<group>"; };
 		468368C6162616D3003734F8 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "../../Icon-Small.png"; sourceTree = "<group>"; };
 		468368C8162616D7003734F8 /* Icon-Big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Big.png"; path = "../../Icon-Big.png"; sourceTree = "<group>"; };
@@ -120,6 +123,8 @@
 				46B02FF4162DBE910001F5DE /* CCData.m */,
 				46878B0616260F01005C9B59 /* CCFetch.h */,
 				46878B0716260F01005C9B59 /* CCFetch.m */,
+				4621F279162DC72D00AA0506 /* CCEvent.h */,
+				4621F27A162DC72D00AA0506 /* CCEvent.m */,
 				46878AF216260EC2005C9B59 /* MainStoryboard_iPhone.storyboard */,
 				46878AF516260EC2005C9B59 /* MainStoryboard_iPad.storyboard */,
 				46878AE916260EC2005C9B59 /* CCAppDelegate.h */,
@@ -223,6 +228,7 @@
 				46878AFD16260EC2005C9B59 /* CCDetailViewController.m in Sources */,
 				46878B0816260F01005C9B59 /* CCFetch.m in Sources */,
 				46B02FF5162DBE910001F5DE /* CCData.m in Sources */,
+				4621F27B162DC72D00AA0506 /* CCEvent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
