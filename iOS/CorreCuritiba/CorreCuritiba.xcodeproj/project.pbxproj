@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4621F27B162DC72D00AA0506 /* CCEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4621F27A162DC72D00AA0506 /* CCEvent.m */; };
-		468368C11626147C003734F8 /* flag.png in Resources */ = {isa = PBXBuildFile; fileRef = 468368C01626147C003734F8 /* flag.png */; };
 		468368C7162616D3003734F8 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 468368C6162616D3003734F8 /* Icon-Small.png */; };
 		468368C9162616D7003734F8 /* Icon-Big.png in Resources */ = {isa = PBXBuildFile; fileRef = 468368C8162616D7003734F8 /* Icon-Big.png */; };
 		468368CB162618F3003734F8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 468368CA162618F3003734F8 /* Default-568h@2x.png */; };
@@ -32,7 +31,6 @@
 /* Begin PBXFileReference section */
 		4621F279162DC72D00AA0506 /* CCEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEvent.h; sourceTree = "<group>"; };
 		4621F27A162DC72D00AA0506 /* CCEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCEvent.m; sourceTree = "<group>"; };
-		468368C01626147C003734F8 /* flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flag.png; sourceTree = "<group>"; };
 		468368C6162616D3003734F8 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "../../Icon-Small.png"; sourceTree = "<group>"; };
 		468368C8162616D7003734F8 /* Icon-Big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Big.png"; path = "../../Icon-Big.png"; sourceTree = "<group>"; };
 		468368CA162618F3003734F8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -84,7 +82,6 @@
 				468368CA162618F3003734F8 /* Default-568h@2x.png */,
 				468368C8162616D7003734F8 /* Icon-Big.png */,
 				468368C6162616D3003734F8 /* Icon-Small.png */,
-				468368C01626147C003734F8 /* flag.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -205,7 +202,6 @@
 				46878AE516260EC2005C9B59 /* InfoPlist.strings in Resources */,
 				46878AF416260EC2005C9B59 /* MainStoryboard_iPhone.storyboard in Resources */,
 				46878AF716260EC2005C9B59 /* MainStoryboard_iPad.storyboard in Resources */,
-				468368C11626147C003734F8 /* flag.png in Resources */,
 				468368C7162616D3003734F8 /* Icon-Small.png in Resources */,
 				468368C9162616D7003734F8 /* Icon-Big.png in Resources */,
 				468368CB162618F3003734F8 /* Default-568h@2x.png in Resources */,
