@@ -12,7 +12,7 @@
 
 #import "CCFetch.h"
 
-#import "CCEvents.h"
+#import "CCData.h"
 
 #import "SBJson.h"
 
@@ -91,14 +91,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     //return _objects.count;
-    return [[[CCEvents sharedEvents] getEvents] count];
+    return [[[CCData sharedData] getData] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-	NSMutableArray *items = [[CCEvents sharedEvents] getEvents];
+	NSMutableArray *items = [[CCData sharedData] getData];
 	NSMutableDictionary *keys = [items objectAtIndex:indexPath.row];
 	
 	// Visual cue that we're done loading web data and ready to make them visible in cells
@@ -130,7 +130,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-		NSMutableArray *items = [[CCEvents sharedEvents] getEvents];
+		NSMutableArray *items = [[CCData sharedData] getData];
 		NSMutableDictionary *selected = [items objectAtIndex:indexPath.row];
         self.detailViewController.detailItem = selected;
     }
@@ -140,7 +140,7 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-		NSMutableArray *items = [[CCEvents sharedEvents] getEvents];
+		NSMutableArray *items = [[CCData sharedData] getData];
 		NSMutableDictionary *selected = [items objectAtIndex:indexPath.row];
         [[segue destinationViewController] setDetailItem:selected];
     }

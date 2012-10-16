@@ -8,18 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CCEvents : NSObject
+@interface CCData : NSObject
 {
-    NSMutableArray *events;
+    NSMutableArray *data;
 }
 
-@property (nonatomic, retain) NSMutableArray *events;
+@property (nonatomic, retain) NSMutableArray *data;
 
 -(id)init;
--(NSMutableArray*)getEvents;
--(void)setEvents:(NSDictionary *)venues;
+-(NSMutableArray*)getData;
+-(void)populateData:(NSDictionary *)json;
 
 // Singleton so that we can get events from anywhere in the app
-+(CCEvents*)sharedEvents;
++(CCData*)sharedData;
 
 @end

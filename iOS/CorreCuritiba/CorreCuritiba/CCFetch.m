@@ -8,7 +8,7 @@
 
 #import "CCFetch.h"
 
-#import "CCEvents.h"
+#import "CCData.h"
 
 #import "SBJson/SBJson.h"
 
@@ -44,7 +44,7 @@
 		NSLog(@"Calendário não foi carregado corretamente!");
 		NSLog(@"Erro: %@", error);
 	} else {
-		[[CCEvents sharedEvents] setEvents:venues];
+		[[CCData sharedData] populateData:venues];
 	}
 }
 
