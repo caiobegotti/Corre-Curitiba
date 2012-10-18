@@ -30,11 +30,11 @@
 /* Begin PBXFileReference section */
 		4621F279162DC72D00AA0506 /* CCEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEvent.h; sourceTree = "<group>"; };
 		4621F27A162DC72D00AA0506 /* CCEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCEvent.m; sourceTree = "<group>"; };
-		468368C6162616D3003734F8 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "../../Icon-Small.png"; sourceTree = "<group>"; };
-		468368C8162616D7003734F8 /* Icon-Big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Big.png"; path = "../../Icon-Big.png"; sourceTree = "<group>"; };
-		468368CA162618F3003734F8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../Default-568h@2x.png"; sourceTree = "<group>"; };
-		468368CC162618F7003734F8 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../../Default@2x.png"; sourceTree = "<group>"; };
-		468368CE162618F9003734F8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../../Default.png; sourceTree = "<group>"; };
+		468368C6162616D3003734F8 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = SOURCE_ROOT; };
+		468368C8162616D7003734F8 /* Icon-Big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Big.png"; sourceTree = SOURCE_ROOT; };
+		468368CA162618F3003734F8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
+		468368CC162618F7003734F8 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = SOURCE_ROOT; };
+		468368CE162618F9003734F8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		46878AD616260EC2005C9B59 /* CorreCuritiba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CorreCuritiba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46878ADA16260EC2005C9B59 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		46878ADC16260EC2005C9B59 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
