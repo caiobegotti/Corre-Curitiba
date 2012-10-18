@@ -10,14 +10,15 @@
 
 @interface CCData : NSObject
 {
-    NSMutableArray *data;
+    NSMutableDictionary *data;
 }
 
-@property (nonatomic, retain) NSMutableArray *data;
+@property (nonatomic, retain) NSMutableDictionary *data;
 
 -(id)init;
 -(void)populateData:(NSDictionary *)json;
--(NSMutableArray*)getData;
+-(NSMutableArray*)getDataForSection:(NSObject*)section;
+-(NSMutableDictionary*)getData;
 
 // Singleton so that we can get events from anywhere in the app
 +(CCData*)sharedData;

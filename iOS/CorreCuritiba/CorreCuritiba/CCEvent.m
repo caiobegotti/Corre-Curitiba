@@ -21,9 +21,13 @@
 @synthesize description;
 @synthesize link;
 
--(id)initWithParam:(NSInteger)selected {
-    NSArray *data = [[CCData sharedData] getData];
-    NSDictionary *venue = [data objectAtIndex:selected];
+-(id)initWithSection:(NSInteger)section andRow:(NSInteger)row
+{
+    NSMutableDictionary *data = [[CCData sharedData] getData];
+    NSString *sectionString = [[data allKeys] objectAtIndex:section];
+    
+    NSArray *sectionData = [[CCData sharedData] getDataForSection:sectionString];
+    NSDictionary *venue = [sectionData objectAtIndex:row];
     
     self.local = [venue objectForKey:@"Local:"];
     self.name = [venue objectForKey:@"Nome:"];

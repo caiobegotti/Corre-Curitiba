@@ -82,8 +82,7 @@
 	[self.tableView reloadData];
 }
 
-/*
-// UNUSED
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     NSArray *set = [[CCDataSections alloc] getDataSections];
@@ -96,33 +95,14 @@
     return [set objectAtIndex:section];
 }
 
-// TODO
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{    
-    NSArray *data = [[CCData sharedData] getData];
-    CCEvent *event = [[CCEvent alloc] initWithParam:section];
-
-    NSMutableArray *sections = [[NSMutableArray alloc] init];
-    
-    for (NSDictionary *entry in data) {
-        if ([[entry objectForKey:@"Data:"] isEqualToString:event.date]) {
-            [sections addObject:[entry objectForKey:@"Data:"]];
-        }
-    }
-    
-    return [sections count];
-}
-*/
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[[CCData sharedData] getData] count];
+    NSArray *sections = [[CCDataSections alloc] getDataSections];
+    NSArray *data = [[CCData sharedData] getDataForSection:[sections objectAtIndex:section]];
+
+    return [data count];
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -132,7 +112,7 @@
 	[self.view setUserInteractionEnabled: YES];
 	[activity stopAnimating];
 	
-    CCEvent *event = [[CCEvent alloc] initWithParam:[indexPath row]];
+    CCEvent *event = [[CCEvent alloc] initWithSection:[indexPath section] andRow:[indexPath row]];
         
     NSString *subtitle;
     subtitle = [NSString stringWithFormat:@"%1$@ — %2$@", event.date, event.distance];
@@ -161,8 +141,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-		NSMutableArray *items = [[CCData sharedData] getData];
-		NSMutableDictionary *selected = [items objectAtIndex:indexPath.row];
+		NSMutableDictionary *data = [[CCData sharedData] getData];
+        NSString *section = [[data allKeys] objectAtIndex:[indexPath section]];
+		NSMutableDictionary *selected = [[[CCData sharedData] getDataForSection:section] objectAtIndex:[indexPath row]];
         self.detailViewController.detailItem = selected;
     }
 }
@@ -171,7 +152,7 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        CCEvent *event = [[CCEvent alloc] initWithParam:[indexPath row]];
+        CCEvent *event = [[CCEvent alloc] initWithSection:[indexPath section] andRow:[indexPath row]];
         [[segue destinationViewController] setDetailItem:event];
     }
 }
