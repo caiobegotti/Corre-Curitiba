@@ -87,7 +87,38 @@ static CCData* _sharedData = nil;
 +(NSArray *)getDataSections {
     NSDictionary *data = [[CCData sharedData] getData];
     
-    return [data allKeys];
+    NSMutableArray *sections = [[NSMutableArray alloc] initWithArray:[data allKeys]];
+    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:nil ascending:NO selector:@selector(dateCompare:)];
+    [sections sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    
+    return sections;
+}
+
+@end
+
+@implementation NSString (SortCompare)
+
+-(NSInteger) dateCompare:(NSString *)str2
+{
+    static NSDateFormatter *dateFormat;
+    if (dateFormat == nil) {
+        dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"dd/MM/yyyy"];
+        [dateFormat setDoesRelativeDateFormatting:true];
+    }
+    NSArray *dateA = [self componentsSeparatedByString:@"/"];
+    NSArray *dateB = [str2 componentsSeparatedByString:@"/"];
+    
+    // compare years, then months, and finally days
+    int result;
+    for (int i = 2; i >=0; --i) {
+        result = [[dateA objectAtIndex:i] compare:[dateB objectAtIndex:i]];
+        if (result != NSOrderedSame) {
+            return result;
+        }
+    }
+    
+    return result;
 }
 
 @end
