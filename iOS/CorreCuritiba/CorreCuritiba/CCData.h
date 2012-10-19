@@ -30,3 +30,9 @@
 +(NSArray *)getDataSections;
 
 @end
+
+@interface NSString (SortCompare)
+
+-(NSInteger)dateCompare:(NSString *)str2;
+
+@end
