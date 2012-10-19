@@ -80,8 +80,11 @@
 - (void)forceReload
 {
 	[self.tableView reloadData];
+    
+    // Visual cue that we're done loading web data and ready to make them visible in cells
+	[self.view setUserInteractionEnabled: YES];
+	[activity stopAnimating];
 }
-
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -103,15 +106,9 @@
     return [data count];
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
-	// Visual cue that we're done loading web data and ready to make them visible in cells
-	[self.view setUserInteractionEnabled: YES];
-	[activity stopAnimating];
-	
     CCEvent *event = [[CCEvent alloc] initWithSection:[indexPath section] andRow:[indexPath row]];
         
     NSString *subtitle;
