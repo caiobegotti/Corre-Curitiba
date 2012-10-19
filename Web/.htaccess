@@ -2,3 +2,12 @@ Options +ExecCGI
 AddHandler fastcgi-script .py
 AddHandler cgi-script .py 
 DirectoryIndex server.py/
+
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteBase /
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} !^(/.*)+server.py/
+    RewriteRule ^(.*)$ server.py/$1 [PT]
+</IfModule>
