@@ -20,7 +20,7 @@ static CCData* _sharedData = nil;
 {
 	@synchronized([CCData class]) {
 		if (!_sharedData) {
-			[[self alloc] init];
+			_sharedData = [[self alloc] init];
 		}
 		return _sharedData;
 	}
@@ -41,7 +41,7 @@ static CCData* _sharedData = nil;
 	self = [super init];
 	if (self != nil) {
 		NSLog(@"Init not nil");
-		data = [[NSMutableArray alloc] init];
+		data = [[NSMutableDictionary alloc] init];
 	}
 	return self;
 }
@@ -51,16 +51,31 @@ static CCData* _sharedData = nil;
 	for (NSDictionary *list in json)
 	{
 		NSDictionary *entry = [json objectForKey:list];
-		[data addObject:entry];
+        NSString *key = [entry objectForKey:@"Data:"];
+        
+        NSMutableArray *array = [data objectForKey:key];
+        if (array == nil) {
+            array = [[NSMutableArray alloc] init];
+            [data setObject:array forKey:key];
+        }
+        
+        [array addObject:entry];
 	}
 	NSNotification *notify = [NSNotification notificationWithName:@"reloadRequest" object:self];
 	[[NSNotificationCenter defaultCenter] postNotification:notify];
 }
 
--(NSMutableArray*)getData
+-(NSMutableArray*)getDataForSection:(NSObject*)section;
 {
+    NSMutableArray *array = [data objectForKey:section];
+    
     NSSortDescriptor *sortDesc = [[NSSortDescriptor alloc] initWithKey:@"Data:" ascending:YES];
-    [data sortUsingDescriptors:[NSArray arrayWithObject:sortDesc]];
+    [array sortUsingDescriptors:[NSArray arrayWithObject:sortDesc]];
+    return array;
+}
+
+-(NSMutableDictionary*)getData;
+{
     return data;
 }
 
@@ -69,24 +84,10 @@ static CCData* _sharedData = nil;
 
 @implementation CCDataSections
 
--(NSArray *)getDataSections {
-    NSArray *data = [[CCData sharedData] getData];
-    NSMutableArray *sections = [[NSMutableArray alloc] init];
++(NSArray *)getDataSections {
+    NSDictionary *data = [[CCData sharedData] getData];
     
-    for (NSDictionary *entry in data) {
-        [sections addObject:[entry objectForKey:@"Data:"]];
-    }
-    
-    
-    NSMutableArray *unique = [NSMutableArray array];
-    
-    for (id obj in sections) {
-        if (![unique containsObject:obj]) {
-            [unique addObject:obj];
-        }
-    }
-
-    return unique;
+    return [data allKeys];
 }
 
 @end
