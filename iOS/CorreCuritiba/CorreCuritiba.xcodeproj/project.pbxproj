@@ -25,6 +25,7 @@
 		46878AFD16260EC2005C9B59 /* CCDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46878AFC16260EC2005C9B59 /* CCDetailViewController.m */; };
 		46878B0816260F01005C9B59 /* CCFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = 46878B0716260F01005C9B59 /* CCFetch.m */; };
 		46B02FF5162DBE910001F5DE /* CCData.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B02FF4162DBE910001F5DE /* CCData.m */; };
+		46F57CDC16318FD100280A01 /* CCMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F57CDB16318FD100280A01 /* CCMenuCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,8 @@
 		46878B0716260F01005C9B59 /* CCFetch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFetch.m; sourceTree = "<group>"; };
 		46B02FF3162DBE910001F5DE /* CCData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCData.h; sourceTree = "<group>"; };
 		46B02FF4162DBE910001F5DE /* CCData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCData.m; sourceTree = "<group>"; };
+		46F57CDA16318FD100280A01 /* CCMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMenuCell.h; sourceTree = "<group>"; };
+		46F57CDB16318FD100280A01 /* CCMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMenuCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +130,8 @@
 				46878AF916260EC2005C9B59 /* CCMasterViewController.m */,
 				46878AFB16260EC2005C9B59 /* CCDetailViewController.h */,
 				46878AFC16260EC2005C9B59 /* CCDetailViewController.m */,
+				46F57CDA16318FD100280A01 /* CCMenuCell.h */,
+				46F57CDB16318FD100280A01 /* CCMenuCell.m */,
 				46878AE116260EC2005C9B59 /* Supporting Files */,
 			);
 			path = CorreCuritiba;
@@ -221,6 +226,7 @@
 				46878B0816260F01005C9B59 /* CCFetch.m in Sources */,
 				46B02FF5162DBE910001F5DE /* CCData.m in Sources */,
 				4621F27B162DC72D00AA0506 /* CCEvent.m in Sources */,
+				46F57CDC16318FD100280A01 /* CCMenuCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

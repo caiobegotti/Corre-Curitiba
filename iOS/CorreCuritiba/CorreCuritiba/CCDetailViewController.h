@@ -20,7 +20,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *detailEnrollment;
 @property (weak, nonatomic) IBOutlet UILabel *detailApplications;
 @property (weak, nonatomic) IBOutlet UILabel *detailDistance;
-@property (weak, nonatomic) IBOutlet UILabel *detailDescription;
-@property (weak, nonatomic) IBOutlet UILabel *detailLink;
+@property (weak, nonatomic) IBOutlet UITextView *detailDescription;
+@property (weak, nonatomic) IBOutlet UITextView *detailLink;
+
+- (void)openUrl:(id)sender;
 
 @end

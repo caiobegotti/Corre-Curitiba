@@ -16,6 +16,8 @@
 
 #import "CCEvent.h"
 
+#import "CCMenuCell.h"
+
 @interface CCMasterViewController () {
     NSMutableArray *_objects;
 }
@@ -36,6 +38,8 @@
 {
     [super viewDidLoad];
 	self.detailViewController = (CCDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    self.tableView.separatorColor = [UIColor clearColor];
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     
     // Visual cue that there are stuff still being loaded
 	activity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 32.0f, 32.0f)];
@@ -131,13 +135,61 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    CCEvent *event = [[CCEvent alloc] initWithSection:[indexPath section] andRow:[indexPath row]];
-            
-	cell.detailTextLabel.text = event.distance;
-    cell.textLabel.text = event.name;
+    static NSString *cellIdentifier = @"MenuCellView";
+    CCMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-	return cell;
+    if (cell == nil) {
+        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil];
+        cell = [topLevelObjects objectAtIndex:0];
+    }
+    
+    CCEvent *event = [[CCEvent alloc] initWithSection:[indexPath section] andRow:[indexPath row]];
+
+	cell.cellDetailTittle.text = event.distance;
+    cell.cellTitle.text = event.name;
+    
+    CGRect barFrame = CGRectMake(0, 0, 20, cell.frame.size.height);
+    UILabel *barLabel = [[UILabel alloc] initWithFrame:barFrame];
+    barLabel.backgroundColor = [UIColor clearColor];
+    
+    [cell addSubview:barLabel];
+        
+    NSScanner *scanner = [NSScanner scannerWithString:event.distance];
+    NSMutableString *distance = [NSMutableString stringWithCapacity:event.distance.length];
+    NSCharacterSet *digits = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+    
+    while ([scanner isAtEnd] == NO) {
+        NSString *buffer;
+        if ([scanner scanCharactersFromSet:digits intoString:&buffer]) {
+            [distance appendString:buffer];
+            
+        } else {
+            [scanner setScanLocation:([scanner scanLocation] + 1)];
+        }
+    }
+    
+    int fig = [distance intValue];
+    if (fig <= 5000) {
+        // 5K are easy
+        barLabel.backgroundColor = [UIColor colorWithRed:125/255.0f green:158/255.0f blue:192/255.0f alpha:1];
+    } else if (fig <= 10000) {
+        // 10K are okay
+        barLabel.backgroundColor = [UIColor colorWithRed:227/255.0f green:207/255.0f blue:87/255.0f alpha:1];
+    } else if (fig <= 22000) {
+        // Half-marathons are hard
+        barLabel.backgroundColor = [UIColor colorWithRed:255/255.0f green:153/255.0f blue:18/255.0f alpha:1];
+    } else if (fig <= 43000) {
+        // Marathons are painful
+        barLabel.backgroundColor = [UIColor colorWithRed:255/255.0f green:114/255.0f blue:86/255.0f alpha:1];
+    } else if (fig <= 100000) {
+        // You better know what you're doing
+        barLabel.backgroundColor = [UIColor colorWithRed:142/255.0f green:56/255.0f blue:142/255.0f alpha:1];
+    } else {
+        // Just to keep the padding of the bar
+        barLabel.backgroundColor = [UIColor colorWithRed:193/255.0f green:193/255.0f blue:193/255.0f alpha:1];
+    }
+    
+    return cell;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -161,6 +213,7 @@
 		NSMutableDictionary *data = [[CCData sharedData] getData];
         NSString *section = [[data allKeys] objectAtIndex:[indexPath section]];
 		NSMutableDictionary *selected = [[[CCData sharedData] getDataForSection:section] objectAtIndex:[indexPath row]];
+        
         self.detailViewController.detailItem = selected;
     }
 }
