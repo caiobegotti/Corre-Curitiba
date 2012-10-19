@@ -98,6 +98,29 @@
     return [set objectAtIndex:section];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 30)];
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, headerView.frame.size.width, headerView.frame.size.height)];
+    
+    NSArray *set = [CCDataSections getDataSections];
+
+    headerLabel.textAlignment = NSTextAlignmentCenter;
+    headerLabel.backgroundColor = [UIColor blackColor];
+    headerLabel.textColor = [UIColor whiteColor];
+    headerLabel.font = [UIFont boldSystemFontOfSize:22];
+    headerLabel.text = [set objectAtIndex:section];
+    
+    headerView.backgroundColor = [UIColor blackColor];
+    [headerView addSubview:headerLabel];
+    
+    return headerView;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSArray *sections = [CCDataSections getDataSections];
@@ -110,11 +133,8 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     CCEvent *event = [[CCEvent alloc] initWithSection:[indexPath section] andRow:[indexPath row]];
-        
-    NSString *subtitle;
-    subtitle = [NSString stringWithFormat:@"%1$@ — %2$@", event.date, event.distance];
-    
-	cell.detailTextLabel.text = subtitle;
+            
+	cell.detailTextLabel.text = event.distance;
     cell.textLabel.text = event.name;
     
 	return cell;
