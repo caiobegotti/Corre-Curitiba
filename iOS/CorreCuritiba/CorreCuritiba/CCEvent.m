@@ -23,8 +23,7 @@
 
 -(id)initWithSection:(NSInteger)section andRow:(NSInteger)row
 {
-    NSMutableDictionary *data = [[CCData sharedData] getData];
-    NSString *sectionString = [[data allKeys] objectAtIndex:section];
+    NSString *sectionString = [[CCDataSections getDataSections] objectAtIndex:section];
     
     NSArray *sectionData = [[CCData sharedData] getDataForSection:sectionString];
     NSDictionary *venue = [sectionData objectAtIndex:row];

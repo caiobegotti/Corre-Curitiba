@@ -85,19 +85,19 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSArray *set = [[CCDataSections alloc] getDataSections];
+    NSArray *set = [CCDataSections getDataSections];
     return [set count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    NSArray *set = [[CCDataSections alloc] getDataSections];
+    NSArray *set = [CCDataSections getDataSections];
     return [set objectAtIndex:section];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray *sections = [[CCDataSections alloc] getDataSections];
+    NSArray *sections = [CCDataSections getDataSections];
     NSArray *data = [[CCData sharedData] getDataForSection:[sections objectAtIndex:section]];
 
     return [data count];

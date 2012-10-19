@@ -27,6 +27,6 @@
 
 @interface CCDataSections : NSObject
 
--(NSArray *)getDataSections;
++(NSArray *)getDataSections;
 
 @end

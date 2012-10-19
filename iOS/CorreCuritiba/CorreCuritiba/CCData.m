@@ -84,7 +84,7 @@ static CCData* _sharedData = nil;
 
 @implementation CCDataSections
 
--(NSArray *)getDataSections {
++(NSArray *)getDataSections {
     NSDictionary *data = [[CCData sharedData] getData];
     
     return [data allKeys];
