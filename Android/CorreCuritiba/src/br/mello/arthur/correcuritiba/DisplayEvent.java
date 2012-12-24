@@ -1,6 +1,7 @@
 package br.mello.arthur.correcuritiba;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.TextView;
@@ -21,18 +22,19 @@ public class DisplayEvent extends ListActivity {
         setContentView(R.layout.activity_display);
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.display_custom_title);
 
-        Event event = MainActivity.selectedEvent;
+        Bundle bundle = getIntent().getExtras();
+        Event event = bundle.getParcelable("event");
 
         TextView title = (TextView) findViewById(R.id.displaytitle);
         title.setText(event.getName());
 
         TextView subTitle = (TextView) findViewById(R.id.displaysubtitle);
-        subTitle.setText(event.getDateText());
+        subTitle.setText(event.getDate());
         
         Detail[] details = new Detail[]{
         		new Detail(NAME_TITLE, event.getName()),
         		new Detail(LOCAL_TITLE, event.getLocal()),
-        		new Detail(DATE_TITLE, event.getDateText()),
+        		new Detail(DATE_TITLE, event.getDate()),
         		new Detail(DISTANCE_TITLE, event.getDistance()),
         		new Detail(ENROLLMENT_DATE_TITLE, event.getEnrollmentDate()),
         		new Detail(ENROLLMENT_URL_TITLE, event.getEnrollmentUrl()),

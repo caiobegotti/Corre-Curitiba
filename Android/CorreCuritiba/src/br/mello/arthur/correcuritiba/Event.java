@@ -1,7 +1,11 @@
 package br.mello.arthur.correcuritiba;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.Parcelable.Creator;
 
-public class Event {
+
+public class Event implements Parcelable {
 
 	private String name;
 	private String description;
@@ -21,6 +25,17 @@ public class Event {
 		this.url = url;
 		this.enrollmentUrl = enrollmentUrl;
 		this.enrollmentDate = enrollmentDate;
+	}
+	
+	public Event(Parcel in) {
+		name = in.readString();
+		description = in.readString();
+		date = in.readString();
+		distance = in.readString();
+		local = in.readString();
+		url = in.readString();
+		enrollmentUrl = in.readString();
+		enrollmentDate = in.readString();		
 	}
 
 	public String getName() {
@@ -54,4 +69,33 @@ public class Event {
 	public String getEnrollmentDate() {
 		return enrollmentDate;
 	}
+	
+	// Parcelable stuff
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel out, int flags) {
+		out.writeString(name);
+		out.writeString(description);
+		out.writeString(date);
+		out.writeString(distance);
+		out.writeString(local);
+		out.writeString(url);
+		out.writeString(enrollmentUrl);
+		out.writeString(enrollmentDate);
+	}
+	
+	public static final Creator<Event> CREATOR = new Parcelable.Creator<Event>() {
+		public Event createFromParcel(Parcel in) {
+			return new Event(in);
+		}
+
+		public Event[] newArray(int size) {
+			return new Event[size];
+		}
+	};
 }
