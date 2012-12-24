@@ -6,14 +6,7 @@ import android.view.Window;
 import android.widget.TextView;
 
 public class DisplayEvent extends ListActivity {
-	public final static String NAME_TITLE = "Nome";
-	public final static String LOCAL_TITLE = "Local";
-	public final static String DATE_TITLE = "Data";
-	public final static String DISTANCE_TITLE = "Distância";
-	public final static String ENROLLMENT_DATE_TITLE = "Data final das inscrições";
-	public final static String ENROLLMENT_URL_TITLE = "Inscrições (Link)";
-	public final static String DESCRIPTION_TITLE = "Detalhes";
-
+	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,14 +23,14 @@ public class DisplayEvent extends ListActivity {
         TextView subTitle = (TextView) findViewById(R.id.displaysubtitle);
         subTitle.setText(event.getDate());
         
-        Detail[] details = new Detail[]{
-        		new Detail(NAME_TITLE, event.getName()),
-        		new Detail(LOCAL_TITLE, event.getLocal()),
-        		new Detail(DATE_TITLE, event.getDate()),
-        		new Detail(DISTANCE_TITLE, event.getDistance()),
-        		new Detail(ENROLLMENT_DATE_TITLE, event.getEnrollmentDate()),
-        		new Detail(ENROLLMENT_URL_TITLE, event.getEnrollmentUrl()),
-        		new Detail(DESCRIPTION_TITLE, event.getDescription())
+        Detail[] details = new Detail[] {
+        	new Detail(getString(R.string.name_title), event.getName()),
+        	new Detail(getString(R.string.local_title), event.getLocal()),
+        	new Detail(getString(R.string.date_title), event.getDate()),
+        	new Detail(getString(R.string.distance_title), event.getDistance()),
+        	new Detail(getString(R.string.enrollment_date_title), event.getEnrollmentDate()),
+        	new Detail(getString(R.string.enrollment_url_title), event.getEnrollmentUrl()),
+        	new Detail(getString(R.string.description_title), event.getDescription())
         };
         
         setListAdapter(new DetailAdapter(this, R.layout.details_list_item, details));
