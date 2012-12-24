@@ -2,7 +2,6 @@ package br.mello.arthur.correcuritiba;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable.Creator;
 
 
 public class Event implements Parcelable {
