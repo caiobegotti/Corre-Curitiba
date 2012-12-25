@@ -1,15 +1,20 @@
-<resources>
-    <style name="custom_titlebar_bg">
-        <item name="android:background">#BFBFBF</item>
-    </style>
-    
-    <style name="AppTheme" parent="android:Theme.Light">
-  		<item name="android:windowTitleSize">45dp</item>
-		<item name="android:windowTitleBackgroundStyle">@style/custom_titlebar_bg</item>    
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppTheme" parent="Theme.Sherlock.Light.DarkActionBar">
+        <item name="actionBarStyle">@style/ActionBar</item>
+        <item name="android:actionBarStyle">@style/ActionBar</item>
     </style>
 
-    <style name="SplashTheme" parent="android:Theme.Light">
-  		<item name="android:windowNoTitle">true</item>
+    <style name="SplashTheme" parent="Theme.Sherlock.Light.DarkActionBar">
+        <item name="android:windowNoTitle">true</item>
     </style>
-    
+
+    <style name="ActionBar" parent="Widget.Sherlock.ActionBar">
+        <item name="background">@drawable/actionbar_background</item>
+        <item name="android:background">@drawable/actionbar_background</item>
+        
+        <item name="backgroundSplit">@drawable/actionbar_background</item>
+    	<item name="android:backgroundSplit">@drawable/actionbar_background</item>
+    </style>
+
 </resources>

@@ -4,7 +4,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="4"
         android:targetSdkVersion="15" />
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -25,6 +25,10 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme" >
+        </activity>
+        <activity android:name=".DisplayEvent"
+            android:label="@string/title_activity_event"
+            android:theme="@style/AppTheme">
         </activity>
 	</application>
 
