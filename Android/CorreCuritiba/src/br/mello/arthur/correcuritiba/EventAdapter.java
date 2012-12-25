@@ -17,14 +17,12 @@ public class EventAdapter extends ArrayAdapter<Event> {
 	private Context context;
 	private int textViewResourceId;
 	private Event[] objects;
-	private long lastDate;
 
 	public EventAdapter(Context context, int textViewResourceId, Event[] objects) {
 		super(context, textViewResourceId, objects);
 		this.context = context;
 		this.textViewResourceId = textViewResourceId;
 		this.objects = objects;
-		this.lastDate = 0;
 	}
 
 	@Override
@@ -72,7 +70,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
 		long today = new Date().getTime();
 		boolean oldEvent = today / 86400000 > newDate / 86400000;
 		
-		if (newDate == lastDate) {
+		if (position > 0 && objects[position - 1].getDate() == newDate) {
 			dateText.setVisibility(View.GONE);
 		} else {
 			SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -89,8 +87,6 @@ public class EventAdapter extends ArrayAdapter<Event> {
 			nameText.setTextColor(0xff808080);
 			distanceText.setTextColor(0xff808080);
 		}
-		
-		lastDate = newDate;
 		
 		return item;
 	}
