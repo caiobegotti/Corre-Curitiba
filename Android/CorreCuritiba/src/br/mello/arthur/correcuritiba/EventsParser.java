@@ -20,7 +20,7 @@ public class EventsParser {
 		String name = null;
 		String description = null;
 		String date = null;
-		String distance = null;
+		int distance = 0;
 		String local = null;
 		String url = null;
 		String enrollmentUrl = null;
@@ -48,7 +48,7 @@ public class EventsParser {
 			}
 
 			if(eventJson.has(DISTANCE_KEY)){
-				distance = eventJson.getString(DISTANCE_KEY);				
+				distance = Integer.parseInt(eventJson.getString(DISTANCE_KEY).split(" ", 2)[0]);				
 			}
 
 			if(eventJson.has(LOCAL_KEY)){

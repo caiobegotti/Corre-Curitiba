@@ -9,13 +9,13 @@ public class Event implements Parcelable {
 	private String name;
 	private String description;
 	private String date;
-	private String distance;
+	private int distance;
 	private String local;
 	private String url;
 	private String enrollmentUrl;
 	private String enrollmentDate;
 	
-	public Event(String name, String description, String date, String distance, String local, String url, String enrollmentUrl, String enrollmentDate) {
+	public Event(String name, String description, String date, int distance, String local, String url, String enrollmentUrl, String enrollmentDate) {
 		this.name = name;
 		this.description = description;
 		this.date = date;
@@ -30,7 +30,7 @@ public class Event implements Parcelable {
 		name = in.readString();
 		description = in.readString();
 		date = in.readString();
-		distance = in.readString();
+		distance = in.readInt();
 		local = in.readString();
 		url = in.readString();
 		enrollmentUrl = in.readString();
@@ -49,7 +49,7 @@ public class Event implements Parcelable {
 		return date;
 	}
 
-	public String getDistance() {
+	public int getDistance() {
 		return distance;
 	}
 
@@ -81,7 +81,7 @@ public class Event implements Parcelable {
 		out.writeString(name);
 		out.writeString(description);
 		out.writeString(date);
-		out.writeString(distance);
+		out.writeInt(distance);
 		out.writeString(local);
 		out.writeString(url);
 		out.writeString(enrollmentUrl);

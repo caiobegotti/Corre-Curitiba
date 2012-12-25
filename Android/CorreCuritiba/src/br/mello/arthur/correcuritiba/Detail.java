@@ -8,6 +8,11 @@ public class Detail {
 		this.title = title;
 		this.detail = detail;
 	}
+	
+	public Detail(String title, int detail) {
+		this.title = title;
+		this.detail = Integer.toString(detail);
+	}
 
 	public String getTitle() {
 		return title;
