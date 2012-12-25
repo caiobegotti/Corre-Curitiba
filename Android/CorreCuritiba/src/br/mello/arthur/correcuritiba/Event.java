@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 
-public class Event implements Parcelable {
+public class Event implements Parcelable, Comparable<Event> {
 
 	private String name;
 	private String description;
@@ -69,7 +69,7 @@ public class Event implements Parcelable {
 		return enrollmentDate;
 	}
 	
-	// Parcelable stuff
+	// Parcelable methods
 
 	@Override
 	public int describeContents() {
@@ -97,4 +97,11 @@ public class Event implements Parcelable {
 			return new Event[size];
 		}
 	};
+	
+	// Comparable methods
+
+	@Override
+	public int compareTo(Event event) {
+		return (int)Math.signum(this.date - event.date);
+	}
 }
