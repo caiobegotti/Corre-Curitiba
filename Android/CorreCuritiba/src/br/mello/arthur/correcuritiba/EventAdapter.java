@@ -34,19 +34,21 @@ public class EventAdapter extends ArrayAdapter<Event> {
 		
 		TextView distance = (TextView) item.findViewById(R.id.distance);
 		int dist = event.getDistance();
-		distance.setText(String.format("%d m", dist));
+		if (dist > 0)
+			distance.setText(String.format("%d m", dist));
 		
 		try {
-			int color;
-			if (dist > 0 && dist <= 5000) {
+			int color = 0x808080;
+			
+			if (dist <= 5000) {				// 5K are easy
 				color = 0xff7d9ec0; 
-			} else if (dist <= 10000) {
+			} else if (dist <= 10000) {		// 10K are okay		
 				color = 0xffe3cf57;
-			} else if (dist <= 22000) {
+			} else if (dist <= 22000) {		// Half-marathons are hard
 				color = 0xffff9912;
-			} else if (dist <= 43000) {
+			} else if (dist <= 43000) {		// Marathons are painful
 				color = 0xffff7256;
-			} else if (dist <= 100000) {
+			} else if (dist <= 100000) {	// You better know what you're doing
 				color = 0xff8e388e;
 			} else {
 				color = 0xffc0c0c0;
