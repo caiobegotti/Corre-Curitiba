@@ -1,19 +1,21 @@
 package br.mello.arthur.correcuritiba;
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class MainActivity extends ListActivity {
+import com.actionbarsherlock.app.SherlockListActivity;
+
+
+public class MainActivity extends SherlockListActivity {
 	public static Event[] events;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);        
         
         if (events != null) {
         	setListAdapter(new EventAdapter(this, R.layout.event_list_item, events));
