@@ -40,7 +40,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
 		TextView distanceText = (TextView) item.findViewById(R.id.distance);
 		int distance = event.getDistance();
 		if (distance > 0)
-			distanceText.setText(String.format("%d m", distance));
+			distanceText.setText(Util.formatDistance(distance));
 		
 		try {
 			int color = 0x808080;

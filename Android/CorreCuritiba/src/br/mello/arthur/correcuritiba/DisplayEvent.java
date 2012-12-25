@@ -2,6 +2,7 @@ package br.mello.arthur.correcuritiba;
 
 import java.util.Date;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -26,7 +27,7 @@ public class DisplayEvent extends SherlockListActivity {
 				new Detail(getString(R.string.name_title), event.getName()),
 				new Detail(getString(R.string.local_title), event.getLocal()),
 				new Detail(getString(R.string.date_title), new Date(event.getDate())),
-				new Detail(getString(R.string.distance_title), event.getDistance()),
+				new Detail(getString(R.string.distance_title), Util.formatDistance(event.getDistance())),
 				new Detail(getString(R.string.enrollment_date_title), new Date(event.getEnrollmentDate())),
 				new Detail(getString(R.string.enrollment_url_title), event.getEnrollmentUrl()),
 				new Detail(getString(R.string.description_title), event.getDescription())
@@ -34,7 +35,7 @@ public class DisplayEvent extends SherlockListActivity {
 
 		setListAdapter(new DetailAdapter(this, R.layout.details_list_item, details));
 	}
-
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
