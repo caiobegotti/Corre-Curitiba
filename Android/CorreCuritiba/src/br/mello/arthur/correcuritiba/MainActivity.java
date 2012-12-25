@@ -9,6 +9,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 
 
 public class MainActivity extends SherlockListActivity {
@@ -17,7 +19,7 @@ public class MainActivity extends SherlockListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);  
+        setContentView(R.layout.activity_main);
         
         if (events != null) {
         	Arrays.sort(events);
@@ -32,6 +34,13 @@ public class MainActivity extends SherlockListActivity {
     	Intent intent = new Intent(this, DisplayEvent.class);
     	intent.putExtra("event", ((Event)l.getItemAtPosition(position)));
     	startActivity(intent);
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getSupportMenuInflater();
+        inflater.inflate(R.menu.activity_main, menu);
+        return true;
     }
     	  
 }

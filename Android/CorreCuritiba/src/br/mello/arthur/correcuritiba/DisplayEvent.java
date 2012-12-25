@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
 
@@ -20,7 +22,7 @@ public class DisplayEvent extends SherlockListActivity {
 		Bundle bundle = getIntent().getExtras();
 		Event event = bundle.getParcelable("event");
 
-		setTitle(event.getName());
+		//setTitle(event.getName());
 
 		Detail[] details = new Detail[] {
 				new Detail(getString(R.string.name_title), event.getName()),
@@ -48,5 +50,12 @@ public class DisplayEvent extends SherlockListActivity {
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
+	
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getSupportMenuInflater();
+        inflater.inflate(R.menu.activity_event, menu);
+        return true;
+    }
 
 }

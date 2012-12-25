@@ -2,7 +2,10 @@
 
     <string name="app_name">Corre Curitiba</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">Corre Curitiba</string>
+    <string name="menu_refresh">Refresh</string>
+    <string name="menu_share">Share</string>
+    <string name="title_activity_main">Calendário</string>
+    <string name="title_activity_event">Detalhes</string>
     <string name="subtitle">Corridas de Rua</string>
     <string name="download_error">Não foi possível obter informações das corridas.</string>
     <string name="name_title">Nome</string>
