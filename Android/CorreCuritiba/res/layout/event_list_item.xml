@@ -17,6 +17,7 @@
         android:singleLine="true"
         android:textColor="#ffffff"
         android:background="#000000"
+        android:paddingBottom="2dp"
         android:gravity="center" />
 
     <LinearLayout

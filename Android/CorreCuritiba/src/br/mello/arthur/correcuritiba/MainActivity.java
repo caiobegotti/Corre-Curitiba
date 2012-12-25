@@ -17,7 +17,7 @@ public class MainActivity extends SherlockListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);        
+        setContentView(R.layout.activity_main);  
         
         if (events != null) {
         	Arrays.sort(events);

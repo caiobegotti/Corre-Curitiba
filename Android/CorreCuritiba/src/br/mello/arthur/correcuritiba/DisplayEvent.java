@@ -2,7 +2,6 @@ package br.mello.arthur.correcuritiba;
 
 import java.util.Date;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 

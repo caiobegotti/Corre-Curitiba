@@ -4,12 +4,10 @@
     </style>
     
     <style name="AppTheme" parent="android:Theme.Light">
-  		<item name="android:windowTitleSize">45dp</item>
-		<item name="android:windowTitleBackgroundStyle">@style/custom_titlebar_bg</item>    
     </style>
 
     <style name="SplashTheme" parent="android:Theme.Light">
-  		<item name="android:windowNoTitle">true</item>
+  	<item name="android:windowNoTitle">true</item>
     </style>
     
 </resources>
