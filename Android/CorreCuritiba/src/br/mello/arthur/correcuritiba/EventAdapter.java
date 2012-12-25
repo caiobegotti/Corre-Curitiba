@@ -1,6 +1,7 @@
 package br.mello.arthur.correcuritiba;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -68,12 +69,25 @@ public class EventAdapter extends ArrayAdapter<Event> {
 		TextView dateText = (TextView) item.findViewById(R.id.date);
 	
 		long newDate = event.getDate();
+		long today = new Date().getTime();
+		boolean oldEvent = today / 86400000 > newDate / 86400000;
 		
 		if (newDate == lastDate) {
 			dateText.setVisibility(View.GONE);
 		} else {
 			SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-			dateText.setText(df.format(newDate));
+			
+			if (oldEvent) {
+				dateText.setText(df.format(newDate) + " - Evento realizado");
+
+			} else {
+				dateText.setText(df.format(newDate));
+			}
+		}
+		
+		if (oldEvent) {
+			nameText.setTextColor(0xff808080);
+			distanceText.setTextColor(0xff808080);
 		}
 		
 		lastDate = newDate;
