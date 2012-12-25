@@ -2,26 +2,18 @@ package br.mello.arthur.correcuritiba;
 
 import android.app.ListActivity;
 import android.os.Bundle;
-import android.view.Window;
-import android.widget.TextView;
 
 public class DisplayEvent extends ListActivity {
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.activity_display);
-        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.display_custom_title);
 
         Bundle bundle = getIntent().getExtras();
         Event event = bundle.getParcelable("event");
 
-        TextView title = (TextView) findViewById(R.id.displaytitle);
-        title.setText(event.getName());
-
-        TextView subTitle = (TextView) findViewById(R.id.displaysubtitle);
-        subTitle.setText(event.getDate());
+        setTitle(event.getName());
         
         Detail[] details = new Detail[] {
         	new Detail(getString(R.string.name_title), event.getName()),
