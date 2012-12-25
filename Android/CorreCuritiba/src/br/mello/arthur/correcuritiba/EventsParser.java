@@ -1,11 +1,14 @@
 package br.mello.arthur.correcuritiba;
 
+import android.annotation.SuppressLint;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 public class EventsParser {
 	public final static String NAME_KEY = "Nome:";
@@ -16,10 +19,11 @@ public class EventsParser {
 	public final static String ENROLLMENT_URL_KEY = "Inscrições (Link):";
 	public final static String ENROLLMENT_DATE_KEY = "Data final das inscrições:";
 	
+	@SuppressLint("SimpleDateFormat")
 	public List<Event> listFromJSON(String json) throws JSONException {
 		String name = null;
 		String description = null;
-		String date = null;
+		long date = 0;
 		int distance = 0;
 		String local = null;
 		String url = null;
@@ -44,7 +48,12 @@ public class EventsParser {
 			}
 
 			if(eventJson.has(DATE_KEY)){
-				date = eventJson.getString(DATE_KEY);				
+				SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+				try {
+					date = df.parse(eventJson.getString(DATE_KEY)).getTime();
+				} catch (Exception e) {
+					date = 0;
+				}				
 			}
 
 			if(eventJson.has(DISTANCE_KEY)){

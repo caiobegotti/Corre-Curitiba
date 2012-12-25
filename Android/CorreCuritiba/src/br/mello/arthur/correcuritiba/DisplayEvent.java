@@ -1,5 +1,7 @@
 package br.mello.arthur.correcuritiba;
 
+import java.util.Date;
+
 import android.app.ListActivity;
 import android.os.Bundle;
 
@@ -18,7 +20,7 @@ public class DisplayEvent extends ListActivity {
         Detail[] details = new Detail[] {
         	new Detail(getString(R.string.name_title), event.getName()),
         	new Detail(getString(R.string.local_title), event.getLocal()),
-        	new Detail(getString(R.string.date_title), event.getDate()),
+        	new Detail(getString(R.string.date_title), new Date(event.getDate())),
         	new Detail(getString(R.string.distance_title), event.getDistance()),
         	new Detail(getString(R.string.enrollment_date_title), event.getEnrollmentDate()),
         	new Detail(getString(R.string.enrollment_url_title), event.getEnrollmentUrl()),
