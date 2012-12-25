@@ -13,9 +13,9 @@ public class Event implements Parcelable {
 	private String local;
 	private String url;
 	private String enrollmentUrl;
-	private String enrollmentDate;
+	private long enrollmentDate;
 	
-	public Event(String name, String description, long date, int distance, String local, String url, String enrollmentUrl, String enrollmentDate) {
+	public Event(String name, String description, long date, int distance, String local, String url, String enrollmentUrl, long enrollmentDate) {
 		this.name = name;
 		this.description = description;
 		this.date = date;
@@ -34,7 +34,7 @@ public class Event implements Parcelable {
 		local = in.readString();
 		url = in.readString();
 		enrollmentUrl = in.readString();
-		enrollmentDate = in.readString();		
+		enrollmentDate = in.readLong();		
 	}
 
 	public String getName() {
@@ -65,7 +65,7 @@ public class Event implements Parcelable {
 		return enrollmentUrl;
 	}
 
-	public String getEnrollmentDate() {
+	public long getEnrollmentDate() {
 		return enrollmentDate;
 	}
 	
@@ -85,7 +85,7 @@ public class Event implements Parcelable {
 		out.writeString(local);
 		out.writeString(url);
 		out.writeString(enrollmentUrl);
-		out.writeString(enrollmentDate);
+		out.writeLong(enrollmentDate);
 	}
 	
 	public static final Creator<Event> CREATOR = new Parcelable.Creator<Event>() {

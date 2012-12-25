@@ -28,7 +28,7 @@ public class EventsParser {
 		String local = null;
 		String url = null;
 		String enrollmentUrl = null;
-		String enrollmentDate = null;
+		long enrollmentDate = 0;
 
 		ArrayList<Event> events = new ArrayList<Event>();
 		
@@ -71,7 +71,12 @@ public class EventsParser {
 			}
 
 			if(eventJson.has(ENROLLMENT_DATE_KEY)){
-				enrollmentDate = eventJson.getString(ENROLLMENT_DATE_KEY);				
+				SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+				try {
+					enrollmentDate = df.parse(eventJson.getString(ENROLLMENT_DATE_KEY)).getTime();
+				} catch (Exception e) {
+					enrollmentDate = 0;
+				}
 			}
 
 			Event event = new Event(name,

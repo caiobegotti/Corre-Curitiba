@@ -22,7 +22,7 @@ public class DisplayEvent extends ListActivity {
         	new Detail(getString(R.string.local_title), event.getLocal()),
         	new Detail(getString(R.string.date_title), new Date(event.getDate())),
         	new Detail(getString(R.string.distance_title), event.getDistance()),
-        	new Detail(getString(R.string.enrollment_date_title), event.getEnrollmentDate()),
+        	new Detail(getString(R.string.enrollment_date_title), new Date(event.getEnrollmentDate())),
         	new Detail(getString(R.string.enrollment_url_title), event.getEnrollmentUrl()),
         	new Detail(getString(R.string.description_title), event.getDescription())
         };
