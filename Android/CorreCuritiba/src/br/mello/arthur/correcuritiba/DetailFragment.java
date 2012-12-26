@@ -3,6 +3,8 @@ package br.mello.arthur.correcuritiba;
 import java.util.Date;
 
 import com.actionbarsherlock.app.SherlockListFragment;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +13,12 @@ import android.view.ViewGroup;
 
 
 public class DetailFragment extends SherlockListFragment {
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		setHasOptionsMenu(true);
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -30,5 +38,11 @@ public class DetailFragment extends SherlockListFragment {
 		};
 
 		setListAdapter(new DetailAdapter(getActivity(), R.layout.detail_list_item, details));
+	}
+
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		inflater.inflate(R.menu.detail_menu, menu);
 	}
 }
