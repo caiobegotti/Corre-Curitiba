@@ -6,11 +6,5 @@
         android:icon="@drawable/ic_menu_share"
         android:title="@string/menu_share"
         android:showAsAction="ifRoom|withText" />
-
-    <item android:id="@+id/menu_settings"
-        android:icon="@drawable/ic_menu_preferences"
-        android:title="@string/menu_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never" />
     
 </menu>
