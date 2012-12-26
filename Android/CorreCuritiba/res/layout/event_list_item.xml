@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/list_item_selector" >
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:background="#000000"
         android:gravity="center"
         android:paddingBottom="2dp"
@@ -18,31 +16,38 @@
         android:textColor="#ffffff"
         android:textStyle="bold" />
 
-    <View
-        android:id="@+id/tag"
-        android:layout_width="16dp"
-        android:layout_height="match_parent"
-        android:layout_below="@id/date"
-        android:layout_alignBottom="@+id/distance"
-        android:layout_marginRight="8dp"
-        android:background="#808080" />
-
-    <TextView
-        android:id="@+id/name"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/tag"
-        android:layout_below="@id/date"
-        android:singleLine="true"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_height="match_parent"
+        android:background="@drawable/list_item_selector"
+        android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/distance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/tag"
-        android:layout_below="@id/name"
-        android:paddingBottom="8dp"
-        android:singleLine="true" />
+        <View
+            android:id="@+id/tag"
+            android:layout_width="16dp"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@+id/distance"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="8dp"
+            android:background="#808080" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/tag"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name"
+            android:layout_toRightOf="@id/tag"
+            android:paddingBottom="8dp"
+            android:singleLine="true" />
+    </RelativeLayout>
+
+</LinearLayout>
