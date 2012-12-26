@@ -85,6 +85,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
 		
 		if (oldEvent) {
 			nameText.setTextColor(0xff808080);
+			dateText.setTextColor(0xffc0c0c0);
 			distanceText.setTextColor(0xff808080);
 		}
 		
