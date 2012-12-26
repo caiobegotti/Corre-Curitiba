@@ -1,44 +1,61 @@
 package br.mello.arthur.correcuritiba;
 
-import android.app.ListActivity;
-import android.os.Bundle;
-import android.view.Window;
-import android.widget.TextView;
+import java.util.Date;
 
-public class DisplayEvent extends ListActivity {
-	public final static String NAME_TITLE = "Nome";
-	public final static String LOCAL_TITLE = "Local";
-	public final static String DATE_TITLE = "Data";
-	public final static String DISTANCE_TITLE = "Distância";
-	public final static String ENROLLMENT_DATE_TITLE = "Data final das inscrições";
-	public final static String ENROLLMENT_URL_TITLE = "Inscrições (Link)";
-	public final static String DESCRIPTION_TITLE = "Detalhes";
+import android.content.Intent;
+import android.os.Bundle;
+
+import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
+
+
+public class DisplayEvent extends SherlockListActivity {
 
 	@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
-        setContentView(R.layout.activity_display);
-        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.display_custom_title);
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_display);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Event event = MainActivity.selectedEvent;
+		Bundle bundle = getIntent().getExtras();
+		Event event = bundle.getParcelable("event");
 
-        TextView title = (TextView) findViewById(R.id.displaytitle);
-        title.setText(event.getName());
+		//setTitle(event.getName());
 
-        TextView subTitle = (TextView) findViewById(R.id.displaysubtitle);
-        subTitle.setText(event.getDateText());
-        
-        Detail[] details = new Detail[]{
-        		new Detail(NAME_TITLE, event.getName()),
-        		new Detail(LOCAL_TITLE, event.getLocal()),
-        		new Detail(DATE_TITLE, event.getDateText()),
-        		new Detail(DISTANCE_TITLE, event.getDistance()),
-        		new Detail(ENROLLMENT_DATE_TITLE, event.getEnrollmentDate()),
-        		new Detail(ENROLLMENT_URL_TITLE, event.getEnrollmentUrl()),
-        		new Detail(DESCRIPTION_TITLE, event.getDescription())
-        };
-        
-        setListAdapter(new DetailAdapter(this, R.layout.details_list_item, details));
-   }
+		Detail[] details = new Detail[] {
+				new Detail(getString(R.string.name_title), event.getName()),
+				new Detail(getString(R.string.local_title), event.getLocal()),
+				new Detail(getString(R.string.date_title), new Date(event.getDate())),
+				new Detail(getString(R.string.distance_title), Util.formatDistance(event.getDistance())),
+				new Detail(getString(R.string.enrollment_date_title), new Date(event.getEnrollmentDate())),
+				new Detail(getString(R.string.enrollment_url_title), event.getEnrollmentUrl()),
+				new Detail(getString(R.string.description_title), event.getDescription())
+		};
+
+		setListAdapter(new DetailAdapter(this, R.layout.details_list_item, details));
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	        case android.R.id.home:
+	            // app icon in action bar clicked; go home
+	            Intent intent = new Intent(this, MainActivity.class);
+	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	            startActivity(intent);
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+	
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getSupportMenuInflater();
+        inflater.inflate(R.menu.activity_event, menu);
+        return true;
+    }
+
 }

@@ -2,6 +2,7 @@ package br.mello.arthur.correcuritiba;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ public class DetailAdapter extends ArrayAdapter<Detail> {
 
 		TextView detailText = (TextView) item.findViewById(R.id.detail);
 		detailText.setText(detail.getDetail());
+		detailText.setAutoLinkMask(Linkify.WEB_URLS);
 
 		return item;
 	}	
