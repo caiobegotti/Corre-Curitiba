@@ -35,6 +35,7 @@ public class EventsFragment extends SherlockListFragment {
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
+		v.setActivated(true);
 		DetailFragment fragment = (DetailFragment)getFragmentManager().findFragmentById(R.id.detail_fragment);
 		if (fragment != null && fragment.isInLayout()) {
 			fragment.displayEvent((Event)l.getItemAtPosition(position));
@@ -48,6 +49,6 @@ public class EventsFragment extends SherlockListFragment {
 	@Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.events_menu, menu);
-    }
+	}
 
 }
