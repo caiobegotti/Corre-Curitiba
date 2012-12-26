@@ -1,40 +1,35 @@
 package br.mello.arthur.correcuritiba;
 
-import java.util.Date;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
-import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
 
-public class DisplayEvent extends SherlockListActivity {
+public class DetailActivity extends SherlockFragmentActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_display);
+		setContentView(R.layout.detail_activity);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		Bundle bundle = getIntent().getExtras();
 		Event event = bundle.getParcelable("event");
+		
+		Log.i("asd", "event=" + event);
 
-		//setTitle(event.getName());
+		if (event != null) {
+        	DetailFragment fragment = (DetailFragment)getSupportFragmentManager().findFragmentById(R.id.detail_fragment);
+        	if (fragment != null && fragment.isInLayout()) {
 
-		Detail[] details = new Detail[] {
-				new Detail(getString(R.string.name_title), event.getName()),
-				new Detail(getString(R.string.local_title), event.getLocal()),
-				new Detail(getString(R.string.date_title), new Date(event.getDate())),
-				new Detail(getString(R.string.distance_title), Util.formatDistance(event.getDistance())),
-				new Detail(getString(R.string.enrollment_date_title), new Date(event.getEnrollmentDate())),
-				new Detail(getString(R.string.enrollment_url_title), event.getEnrollmentUrl()),
-				new Detail(getString(R.string.description_title), event.getDescription())
-		};
-
-		setListAdapter(new DetailAdapter(this, R.layout.details_list_item, details));
+        		fragment.displayEvent(event);
+        	}
+		}
 	}
 	
 	@Override
