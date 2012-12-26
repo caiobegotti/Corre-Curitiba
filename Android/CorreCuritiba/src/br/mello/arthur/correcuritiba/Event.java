@@ -102,6 +102,6 @@ public class Event implements Parcelable, Comparable<Event> {
 
 	@Override
 	public int compareTo(Event event) {
-		return (int)Math.signum(this.date - event.date);
+		return (int)Math.signum(event.date - this.date);
 	}
 }
