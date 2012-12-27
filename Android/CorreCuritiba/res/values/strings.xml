@@ -13,6 +13,6 @@
 	<string name="date_title">Data</string>
 	<string name="distance_title">Distância</string>
 	<string name="enrollment_date_title">Data final das inscrições</string>
-	<string name="enrollment_url_title">Inscrições (link)</string>
+	<string name="enrollment_url_title">Inscrições</string>
 	<string name="description_title">Detalhes</string>
 </resources>
