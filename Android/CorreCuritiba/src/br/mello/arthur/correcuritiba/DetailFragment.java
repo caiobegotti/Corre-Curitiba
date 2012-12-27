@@ -2,19 +2,24 @@ package br.mello.arthur.correcuritiba;
 
 import java.util.Date;
 
-import com.actionbarsherlock.app.SherlockListFragment;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.actionbarsherlock.app.SherlockListFragment;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.widget.ShareActionProvider;
+
 
 public class DetailFragment extends SherlockListFragment {
-	
+	private ShareActionProvider shareActionProvider;
+	private Event currentEvent = null;
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
@@ -40,11 +45,35 @@ public class DetailFragment extends SherlockListFragment {
 		};
 
 		setListAdapter(new DetailAdapter(getActivity(), R.layout.detail_list_item, details));
+		currentEvent = event;
+		
+		setShareIntent();
 	}
 
+
+	// Menu
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		inflater.inflate(R.menu.detail_menu, menu);
+
+		MenuItem item = menu.findItem(R.id.menu_share);		
+		shareActionProvider = (ShareActionProvider)item.getActionProvider();
+		setShareIntent();
+	}
+	
+	
+	// Sharing
+	
+	private void setShareIntent() {
+	    if (shareActionProvider != null && currentEvent != null) {
+	    	Intent shareIntent = new Intent(Intent.ACTION_SEND);
+			shareIntent.setType("text/plain");
+			shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,
+						getString(R.string.app_name) + ": " + currentEvent.getName());
+			shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, currentEvent.getDescription());	    	
+	    	
+	        shareActionProvider.setShareIntent(shareIntent);
+	    }
 	}
 }
