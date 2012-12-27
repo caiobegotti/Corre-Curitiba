@@ -8,7 +8,7 @@ public class Util {
 	@SuppressLint("DefaultLocale")
 	static public String formatDistance(Context context, int d) {
 		if (d <= 0)
-			return context.getString(R.string.unspecified_distance);
+			return context.getString(R.string.not_applicable);
 		if (d % 1000 < 100)
 			return String.format("%d km", d / 1000);
 		else
