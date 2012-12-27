@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class DetailAdapter extends ArrayAdapter<Detail> {
@@ -34,6 +35,15 @@ public class DetailAdapter extends ArrayAdapter<Detail> {
 		TextView detailText = (TextView) item.findViewById(R.id.detail);
 		detailText.setText(detail.getDetail());
 		detailText.setAutoLinkMask(Linkify.WEB_URLS);
+		
+		ImageButton icon = (ImageButton)item.findViewById(R.id.icon);
+		int iconRes = detail.getIconRes();
+		if (iconRes >= 0) {
+			icon.setImageResource(iconRes);
+			icon.setBackgroundResource(R.drawable.press_selector);
+		} else {
+			icon.setVisibility(View.GONE);
+		}
 
 		return item;
 	}	

@@ -8,21 +8,23 @@ import android.text.format.DateFormat;
 public class Detail {
 	private String title;
 	private String detail;
+	private int iconRes = -1;
 
 	public Detail(String title, String detail) {
 		this.title = title;
 		this.detail = detail;
 	}
-	
+
 	public Detail(String title, int detail) {
 		this.title = title;
 		this.detail = Integer.toString(detail);
 	}
-	
+
 	public Detail(String title, Date detail, Context context) {
 		java.text.DateFormat df = android.text.format.DateFormat.getDateFormat(context);
 		this.title = title;
 		this.detail = df.format(detail) + " (" + Util.capitalize(DateFormat.format("E", detail).toString()) + ")";
+		this.iconRes = R.drawable.calendar;
 	}
 
 	public String getTitle() {
@@ -31,5 +33,9 @@ public class Detail {
 
 	public String getDetail() {
 		return detail;
+	}
+	
+	public int getIconRes() {
+		return iconRes;
 	}
 }

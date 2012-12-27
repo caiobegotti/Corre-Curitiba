@@ -2,7 +2,6 @@ package br.mello.arthur.correcuritiba;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
@@ -20,8 +19,6 @@ public class DetailActivity extends SherlockFragmentActivity {
 
 		Bundle bundle = getIntent().getExtras();
 		Event event = bundle.getParcelable("event");
-		
-		Log.i("asd", "event=" + event);
 
 		if (event != null) {
         	DetailFragment fragment = (DetailFragment)getSupportFragmentManager().findFragmentById(R.id.detail_fragment);

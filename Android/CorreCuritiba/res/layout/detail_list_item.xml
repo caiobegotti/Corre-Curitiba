@@ -6,21 +6,35 @@
     android:paddingLeft="4dp"
     android:paddingRight="4dp"
     android:paddingBottom="8dp"
-    android:paddingTop="6dp">
+    android:paddingTop="6dp">  
+        
+    <ImageButton
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" />
     
     <TextView
         android:id="@+id/detailtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/icon"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="bold" />
-	
+    
     <TextView
         android:id="@+id/detail"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/detailtitle"
+        android:layout_toLeftOf="@id/icon"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:autoLink="web" />
+
+	
+    
+
+        
     
 </RelativeLayout>
