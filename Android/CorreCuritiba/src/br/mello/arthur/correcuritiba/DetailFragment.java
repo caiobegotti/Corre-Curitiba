@@ -6,6 +6,7 @@ import com.actionbarsherlock.app.SherlockListFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,12 +28,13 @@ public class DetailFragment extends SherlockListFragment {
 	}
 
 	public void displayEvent(Event event) {
+		Context context = getActivity().getApplicationContext();
 		Detail[] details = new Detail[] {
 				new Detail(getString(R.string.name_title), event.getName()),
 				new Detail(getString(R.string.local_title), event.getLocal()),
-				new Detail(getString(R.string.date_title), new Date(event.getDate()), getActivity().getApplicationContext()),
-				new Detail(getString(R.string.distance_title), Util.formatDistance(event.getDistance())),
-				new Detail(getString(R.string.enrollment_date_title), new Date(event.getEnrollmentDate()), getActivity().getApplicationContext()),
+				new Detail(getString(R.string.date_title), new Date(event.getDate()), context),
+				new Detail(getString(R.string.distance_title), Util.formatDistance(context, event.getDistance())),
+				new Detail(getString(R.string.enrollment_date_title), new Date(event.getEnrollmentDate()), context),
 				new Detail(getString(R.string.enrollment_url_title), event.getEnrollmentUrl()),
 				new Detail(getString(R.string.description_title), event.getDescription())
 		};
