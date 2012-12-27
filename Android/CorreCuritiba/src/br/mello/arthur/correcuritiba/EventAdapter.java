@@ -1,9 +1,7 @@
 package br.mello.arthur.correcuritiba;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -26,24 +24,23 @@ public class EventAdapter extends ArrayAdapter<Event> {
 	}
 
 	@Override
-	@SuppressLint("SimpleDateFormat")
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = ((Activity) context).getLayoutInflater();
 		View item = inflater.inflate(textViewResourceId, parent, false);
-		
+
 		Event event = objects[position];
-		
+
 		TextView nameText = (TextView) item.findViewById(R.id.name);
 		nameText.setText(event.getName());
-		
+
 		TextView distanceText = (TextView) item.findViewById(R.id.distance);
 		int distance = event.getDistance();
 		if (distance > 0)
 			distanceText.setText(Util.formatDistance(distance));
-		
+
 		try {
 			int color = 0x808080;
-			
+
 			if (distance <= 5000) {				// 5K are easy
 				color = 0xff7d9ec0; 
 			} else if (distance <= 10000) {		// 10K are okay		
@@ -65,16 +62,16 @@ public class EventAdapter extends ArrayAdapter<Event> {
 		}
 
 		TextView dateText = (TextView) item.findViewById(R.id.date);
-	
+
 		long newDate = event.getDate();
 		long today = new Date().getTime();
 		boolean oldEvent = today / 86400000 > newDate / 86400000;
-		
+
 		if (position > 0 && objects[position - 1].getDate() == newDate) {
 			dateText.setVisibility(View.GONE);
 		} else {
-			SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-			
+			java.text.DateFormat df = android.text.format.DateFormat.getDateFormat(context);
+
 			if (oldEvent) {
 				dateText.setText(df.format(newDate) + " - Evento realizado");
 
@@ -82,13 +79,13 @@ public class EventAdapter extends ArrayAdapter<Event> {
 				dateText.setText(df.format(newDate));
 			}
 		}
-		
+
 		if (oldEvent) {
 			nameText.setTextColor(0xff808080);
 			dateText.setTextColor(0xffc0c0c0);
 			distanceText.setTextColor(0xff808080);
 		}
-		
+
 		return item;
 	}
 }

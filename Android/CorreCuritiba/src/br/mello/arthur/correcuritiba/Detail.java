@@ -1,8 +1,9 @@
 package br.mello.arthur.correcuritiba;
 
-import android.annotation.SuppressLint;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import android.content.Context;
+import android.text.format.DateFormat;
 
 public class Detail {
 	private String title;
@@ -18,11 +19,10 @@ public class Detail {
 		this.detail = Integer.toString(detail);
 	}
 	
-	@SuppressLint("SimpleDateFormat")
-	public Detail(String title, Date detail) {
-		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+	public Detail(String title, Date detail, Context context) {
+		java.text.DateFormat df = android.text.format.DateFormat.getDateFormat(context);
 		this.title = title;
-		this.detail = df.format(detail);
+		this.detail = df.format(detail) + " (" + Util.capitalize(DateFormat.format("E", detail).toString()) + ")";
 	}
 
 	public String getTitle() {
