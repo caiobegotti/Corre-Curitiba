@@ -1,5 +1,6 @@
 package br.mello.arthur.correcuritiba;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import android.content.Context;
@@ -34,18 +35,21 @@ public class DetailFragment extends SherlockListFragment {
 
 	public void displayEvent(Event event) {
 		Context context = getActivity().getApplicationContext();
+		ArrayList<Detail> detailList = new ArrayList<Detail>();
+		
+		detailList.add(new Detail(getString(R.string.name_title), event.getName()));
+		detailList.add(new Detail(getString(R.string.local_title), event.getLocal()));
+		detailList.add(new DateDetail(context, getString(R.string.date_title), new Date(event.getDate()), event));
+		
+		int distance = event.getDistance();
+		if (distance > 0)
+			detailList.add(new Detail(getString(R.string.distance_title), Util.formatDistance(context, distance)));
+		
+		detailList.add(new DateDetail(context, getString(R.string.enrollment_date_title), new Date(event.getEnrollmentDate()), event));
+		detailList.add(new Detail(getString(R.string.enrollment_url_title), event.getEnrollmentUrl()));
+		detailList.add(new Detail(getString(R.string.description_title), event.getDescription()));
 
-		Detail[] details = new Detail[] {
-				new Detail(getString(R.string.name_title), event.getName()),
-				new Detail(getString(R.string.local_title), event.getLocal()),
-				new DateDetail(context, getString(R.string.date_title), new Date(event.getDate()), event),
-				new Detail(getString(R.string.distance_title), Util.formatDistance(context, event.getDistance())),
-				new DateDetail(context, getString(R.string.enrollment_date_title), new Date(event.getEnrollmentDate()), event),
-				new Detail(getString(R.string.enrollment_url_title), event.getEnrollmentUrl()),
-				new Detail(getString(R.string.description_title), event.getDescription())
-		};
-
-		setListAdapter(new DetailAdapter(getActivity(), R.layout.detail_list_item, details));
+		setListAdapter(new DetailAdapter(getActivity(), R.layout.detail_list_item, detailList.toArray(new Detail[detailList.size()])));
 		currentEvent = event;
 		
 		setShareIntent();
