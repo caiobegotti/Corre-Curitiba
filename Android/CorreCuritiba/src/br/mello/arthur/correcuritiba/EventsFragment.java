@@ -35,9 +35,9 @@ public class EventsFragment extends SherlockListFragment {
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		v.setActivated(true);
 		DetailFragment fragment = (DetailFragment)getFragmentManager().findFragmentById(R.id.detail_fragment);
 		if (fragment != null && fragment.isInLayout()) {
+			v.setActivated(true);
 			fragment.displayEvent((Event)l.getItemAtPosition(position));
 		} else {			
 			Intent intent = new Intent(getActivity(), DetailActivity.class);
