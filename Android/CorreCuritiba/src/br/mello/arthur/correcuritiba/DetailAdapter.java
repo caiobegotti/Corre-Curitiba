@@ -1,6 +1,7 @@
 package br.mello.arthur.correcuritiba;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.text.util.Linkify;
@@ -11,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DetailAdapter extends ArrayAdapter<Detail> {
 	private Context context;
@@ -65,7 +67,11 @@ public class DetailAdapter extends ArrayAdapter<Detail> {
 				}
 				intent.putExtra("description", event.getDescription());
 				intent.putExtra("eventLocation", event.getLocal());
-				context.startActivity(intent);
+				try {
+					context.startActivity(intent);
+				} catch (ActivityNotFoundException e) {
+					Toast.makeText(context, context.getString(R.string.calendar_not_found), Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 
