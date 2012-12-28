@@ -46,6 +46,11 @@ public class DetailFragment extends SherlockListFragment {
 			detailList.add(new Detail(getString(R.string.distance_title), Util.formatDistance(context, distance)));
 		
 		detailList.add(new DateDetail(context, getString(R.string.enrollment_date_title), new Date(event.getEnrollmentDate()), event));
+		
+		String map = event.getMap();
+		if (map != null)
+			detailList.add(new Detail(getString(R.string.map_title), map));
+		
 		detailList.add(new Detail(getString(R.string.enrollment_url_title), event.getEnrollmentUrl()));
 		detailList.add(new Detail(getString(R.string.description_title), event.getDescription()));
 
