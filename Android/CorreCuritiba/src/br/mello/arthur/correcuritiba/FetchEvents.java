@@ -1,10 +1,12 @@
 package br.mello.arthur.correcuritiba;
 
+import java.io.File;
 import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 
 
 public class FetchEvents extends AsyncTask<String, Object, List<Event>> {
@@ -13,6 +15,7 @@ public class FetchEvents extends AsyncTask<String, Object, List<Event>> {
 
 	public FetchEvents(Activity activity) {
 		this.activity = activity;
+		enableHttpResponseCache();
 	}
 
 	@Override
@@ -38,4 +41,15 @@ public class FetchEvents extends AsyncTask<String, Object, List<Event>> {
 		this.activity.finish();
 	}
 
+	private void enableHttpResponseCache() {
+		try {
+			long httpCacheSize = 50 * 1024;		// 50 KB
+			File httpCacheDir = new File(activity.getCacheDir(), "http");
+			Class.forName("android.net.http.HttpResponseCache")
+				.getMethod("install", File.class, long.class)
+				.invoke(null, httpCacheDir, httpCacheSize);
+		} catch (Exception httpResponseCacheNotAvailable) {
+			Log.d("WebClient", "HTTP response cache is unavailable.");
+		}
+	}
 }
