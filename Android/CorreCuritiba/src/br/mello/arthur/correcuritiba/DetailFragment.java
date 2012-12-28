@@ -34,12 +34,13 @@ public class DetailFragment extends SherlockListFragment {
 
 	public void displayEvent(Event event) {
 		Context context = getActivity().getApplicationContext();
+
 		Detail[] details = new Detail[] {
 				new Detail(getString(R.string.name_title), event.getName()),
 				new Detail(getString(R.string.local_title), event.getLocal()),
-				new Detail(getString(R.string.date_title), new Date(event.getDate()), event, context),
+				new DateDetail(context, getString(R.string.date_title), new Date(event.getDate()), event),
 				new Detail(getString(R.string.distance_title), Util.formatDistance(context, event.getDistance())),
-				new Detail(getString(R.string.enrollment_date_title), new Date(event.getEnrollmentDate()), event, context),
+				new DateDetail(context, getString(R.string.enrollment_date_title), new Date(event.getEnrollmentDate()), event),
 				new Detail(getString(R.string.enrollment_url_title), event.getEnrollmentUrl()),
 				new Detail(getString(R.string.description_title), event.getDescription())
 		};
@@ -69,6 +70,7 @@ public class DetailFragment extends SherlockListFragment {
 	    if (shareActionProvider != null && currentEvent != null) {
 	    	Intent shareIntent = new Intent(Intent.ACTION_SEND);
 			shareIntent.setType("text/plain");
+			shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 			shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,
 						getString(R.string.app_name) + ": " + currentEvent.getName());
 			shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, currentEvent.getDescription());	    	
