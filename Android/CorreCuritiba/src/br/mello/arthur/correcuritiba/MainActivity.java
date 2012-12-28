@@ -26,6 +26,8 @@ public class MainActivity extends SherlockFragmentActivity {
 		}            
 	}
 
+	// Menu
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getSupportMenuInflater();

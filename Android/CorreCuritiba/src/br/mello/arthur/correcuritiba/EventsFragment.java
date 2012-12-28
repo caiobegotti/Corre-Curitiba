@@ -45,7 +45,9 @@ public class EventsFragment extends SherlockListFragment {
 			startActivity(intent);
 		}	
 	}
-	   
+
+	// Menu
+	
 	@Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.events_menu, menu);
