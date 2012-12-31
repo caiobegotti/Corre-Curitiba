@@ -30,12 +30,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/detailtitle"
         android:layout_toLeftOf="@id/icon"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:autoLink="web" />
 
-	
-    
-
-        
-    
 </RelativeLayout>

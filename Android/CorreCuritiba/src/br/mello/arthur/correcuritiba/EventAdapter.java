@@ -35,11 +35,11 @@ public class EventAdapter extends ArrayAdapter<Event> {
 
 		TextView distanceText = (TextView) item.findViewById(R.id.distance);
 		int distance = event.getDistance();
-		distanceText.setText(Util.formatDistance(context, distance));
+		distanceText.setText(Util.formatDistance(context, distance) + " - " + event.getLocal());
 
 		try {
 			int color;
-			
+
 			if (distance <= 0) {				// unspecified distance
 				color = 0xffc0c0c0;
 			} else if (distance <= 5000) {		// 5K are easy
@@ -79,12 +79,6 @@ public class EventAdapter extends ArrayAdapter<Event> {
 			} else {
 				dateText.setText(df.format(newDate));
 			}
-		}
-
-		if (oldEvent) {
-			nameText.setTextColor(0xff808080);
-			dateText.setTextColor(0xffc0c0c0);
-			distanceText.setTextColor(0xff808080);
 		}
 
 		return item;
