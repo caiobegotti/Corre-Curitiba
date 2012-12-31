@@ -38,10 +38,10 @@ public class EventsFragment extends SherlockListFragment {
 		DetailFragment fragment = (DetailFragment)getFragmentManager().findFragmentById(R.id.detail_fragment);
 		if (fragment != null && fragment.isInLayout()) {
 			v.setActivated(true);
-			fragment.displayEvent((Event)l.getItemAtPosition(position));
+			fragment.displayEvent(position);
 		} else {			
 			Intent intent = new Intent(getActivity(), DetailActivity.class);
-			intent.putExtra("event", ((Event)l.getItemAtPosition(position)));
+			intent.putExtra("position", position);
 			startActivity(intent);
 		}	
 	}

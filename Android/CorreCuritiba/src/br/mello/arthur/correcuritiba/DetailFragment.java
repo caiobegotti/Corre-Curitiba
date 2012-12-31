@@ -33,7 +33,8 @@ public class DetailFragment extends SherlockListFragment {
 		return view;
 	}
 
-	public void displayEvent(Event event) {
+	public void displayEvent(int position) {
+		Event event = MainActivity.events[position];
 		Context context = getActivity().getApplicationContext();
 		ArrayList<Detail> detailList = new ArrayList<Detail>();
 		

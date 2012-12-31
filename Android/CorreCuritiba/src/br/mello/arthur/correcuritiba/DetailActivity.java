@@ -18,11 +18,11 @@ public class DetailActivity extends SherlockFragmentActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		Bundle bundle = getIntent().getExtras();
-		Event event = bundle.getParcelable("event");
+		int position = bundle.getInt("position", -1);
 
-		if (event != null) {
+		if (position > 0) {
 			DetailFragment fragment = (DetailFragment)getSupportFragmentManager().findFragmentById(R.id.detail_fragment);
-			fragment.displayEvent(event);
+			fragment.displayEvent(position);
 		}
 	}
 
