@@ -13,8 +13,8 @@
         android:paddingBottom="2dp"
         android:paddingTop="0dp"
         android:singleLine="true"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#ffffff"
+        android:textSize="17sp"
         android:textStyle="bold" />
 
     <View
@@ -32,11 +32,11 @@
 
         <View
             android:id="@+id/tag"
-            android:layout_width="12dp"
+            android:layout_width="10dp"
             android:layout_height="match_parent"
             android:layout_alignBottom="@+id/distance"
             android:layout_alignParentTop="true"
-            android:layout_marginRight="12dp"
+            android:layout_marginRight="10dp"
             android:background="#808080" />
 
         <TextView
