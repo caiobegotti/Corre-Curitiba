@@ -20,6 +20,18 @@ import com.actionbarsherlock.widget.ShareActionProvider;
 public class DetailFragment extends SherlockListFragment {
 	private ShareActionProvider shareActionProvider;
 	private Event currentEvent = null;
+	private int position;
+	
+    static DetailFragment newInstance(int position) {
+        DetailFragment fragment = new DetailFragment();
+
+        // Supply num input as an argument.
+        Bundle args = new Bundle();
+        args.putInt("position", position);
+        fragment.setArguments(args);
+
+        return fragment;
+    }
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -30,9 +42,22 @@ public class DetailFragment extends SherlockListFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.detail_fragment, container, false);
+		position = getArguments() != null ? getArguments().getInt("position") : -1;
 		return view;
 	}
+	
+	// makes the fragment visible to the user
+	@Override
+	public void onStart() {
+		super.onStart();
+		if (position >= 0)
+			displayEvent();
+	}
 
+	public void displayEvent() {
+		displayEvent(position);
+	}
+	
 	public void displayEvent(int position) {
 		Event event = MainActivity.events[position];
 		Context context = getActivity().getApplicationContext();

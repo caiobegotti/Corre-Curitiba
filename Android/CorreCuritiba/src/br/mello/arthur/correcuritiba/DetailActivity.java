@@ -2,6 +2,7 @@ package br.mello.arthur.correcuritiba;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
@@ -20,9 +21,12 @@ public class DetailActivity extends SherlockFragmentActivity {
 		Bundle bundle = getIntent().getExtras();
 		int position = bundle.getInt("position", -1);
 
+		DetailPagerAdapter pagerAdapter = new DetailPagerAdapter(getSupportFragmentManager());
+		ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+		viewPager.setAdapter(pagerAdapter);
+
 		if (position > 0) {
-			DetailFragment fragment = (DetailFragment)getSupportFragmentManager().findFragmentById(R.id.detail_fragment);
-			fragment.displayEvent(position);
+			viewPager.setCurrentItem(position);
 		}
 	}
 
@@ -39,6 +43,8 @@ public class DetailActivity extends SherlockFragmentActivity {
 			return super.onOptionsItemSelected(item);
 		}
 	}
+
+	// Menu
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
