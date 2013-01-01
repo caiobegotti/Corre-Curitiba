@@ -63,8 +63,7 @@ public class DetailFragment extends SherlockListFragment {
 		Context context = getActivity().getApplicationContext();
 		ArrayList<Detail> detailList = new ArrayList<Detail>();
 		
-		detailList.add(new Detail(getString(R.string.name_title), event.getName()));
-		detailList.add(new Detail(getString(R.string.local_title), event.getLocal()));
+		detailList.add(new Detail(event.getName(), event.getLocal()));
 		detailList.add(new DateDetail(context, getString(R.string.date_title), new Date(event.getDate()), event));
 		
 		int distance = event.getDistance();
