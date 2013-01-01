@@ -10,18 +10,25 @@
         android:layout_height="wrap_content"
         android:background="#000000"
         android:gravity="center"
-        android:paddingTop="0dp"
         android:paddingBottom="2dp"
+        android:paddingTop="0dp"
         android:singleLine="true"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#ffffff"
         android:textStyle="bold" />
 
+    <View
+        android:id="@+id/separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#20000000"
+        android:visibility="gone" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingRight="16dp"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:paddingRight="16dp" >
 
         <View
             android:id="@+id/tag"
@@ -29,7 +36,7 @@
             android:layout_height="match_parent"
             android:layout_alignBottom="@+id/distance"
             android:layout_alignParentTop="true"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="12dp"
             android:background="#808080" />
 
         <TextView
@@ -38,10 +45,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@id/tag"
+            android:paddingTop="8dp"
             android:singleLine="true"
-            android:textStyle="bold"
             android:textSize="16sp"
-            android:paddingTop="6dp" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/distance"
@@ -49,9 +56,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/name"
             android:layout_toRightOf="@id/tag"
-            android:textColor="#ff808080"
             android:paddingBottom="12dp"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textColor="#808080"
+            android:textSize="14sp" />
     </RelativeLayout>
 
 </LinearLayout>

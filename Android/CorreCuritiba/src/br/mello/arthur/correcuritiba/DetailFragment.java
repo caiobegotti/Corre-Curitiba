@@ -9,7 +9,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockListFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -17,7 +20,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.widget.ShareActionProvider;
 
 
-public class DetailFragment extends SherlockListFragment {
+public class DetailFragment extends SherlockFragment {
 	private ShareActionProvider shareActionProvider;
 	private Event currentEvent = null;
 	private int position;
@@ -61,11 +64,22 @@ public class DetailFragment extends SherlockListFragment {
 	}
 
 	public void displayEvent(int position) {
+		View rootView = getView();
 		Event event = MainActivity.events[position];
 		Context context = getActivity().getApplicationContext();
+	
+		// Fill header
+		
+		TextView title = (TextView)rootView.findViewById(R.id.title);
+		title.setText(event.getName());
+		
+		TextView subtitle = (TextView)rootView.findViewById(R.id.subtitle);
+		subtitle.setText(event.getLocal());
+		
+		
+		// Fill detail list
+		
 		ArrayList<Detail> detailList = new ArrayList<Detail>();
-
-		detailList.add(new Detail(event.getName(), event.getLocal()));
 		detailList.add(new DateDetail(context, getString(R.string.date_title), new Date(event.getDate()), event));
 
 		int distance = event.getDistance();
@@ -81,7 +95,8 @@ public class DetailFragment extends SherlockListFragment {
 		detailList.add(new Detail(getString(R.string.enrollment_url_title), event.getEnrollmentUrl()));
 		detailList.add(new Detail(getString(R.string.description_title), event.getDescription()));
 
-		setListAdapter(new DetailAdapter(getActivity(), R.layout.detail_list_item, detailList.toArray(new Detail[detailList.size()])));
+		ListView list = (ListView)rootView.findViewById(R.id.list);
+		list.setAdapter(new DetailAdapter(getActivity(), R.layout.detail_list_item, detailList.toArray(new Detail[detailList.size()])));
 		currentEvent = event;
 
 		setShareIntent();

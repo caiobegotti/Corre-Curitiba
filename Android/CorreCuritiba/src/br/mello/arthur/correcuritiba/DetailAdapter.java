@@ -43,6 +43,10 @@ public class DetailAdapter extends ArrayAdapter<Detail> {
 		if (detail.getClass() == DateDetail.class) {
 			adaptDateDetail((DateDetail)detail, (ImageButton)item.findViewById(R.id.icon));
 		}
+		
+		if (detail.isHeader) {
+			item.setBackgroundResource(R.drawable.shadow_top);
+		}
 
 		return item;
 	}

@@ -4,6 +4,7 @@ package br.mello.arthur.correcuritiba;
 public class Detail {
 	protected String title;
 	protected String detail;
+	protected boolean isHeader = false;
 
 	public Detail(String title) {
 		this.title = title;

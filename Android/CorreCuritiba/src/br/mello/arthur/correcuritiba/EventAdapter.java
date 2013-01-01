@@ -70,6 +70,9 @@ public class EventAdapter extends ArrayAdapter<Event> {
 
 		if (position > 0 && objects[position - 1].getDate() == newDate) {
 			dateText.setVisibility(View.GONE);
+			View separator = item.findViewById(R.id.separator);
+			separator.setVisibility(View.VISIBLE);
+			
 		} else {
 			java.text.DateFormat df = android.text.format.DateFormat.getDateFormat(context);
 
