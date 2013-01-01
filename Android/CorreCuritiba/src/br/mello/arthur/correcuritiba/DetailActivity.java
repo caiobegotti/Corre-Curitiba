@@ -11,6 +11,8 @@ import com.actionbarsherlock.view.MenuItem;
 
 
 public class DetailActivity extends SherlockFragmentActivity {
+	private DetailPagerAdapter pagerAdapter;
+	private ViewPager viewPager;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -21,8 +23,8 @@ public class DetailActivity extends SherlockFragmentActivity {
 		Bundle bundle = getIntent().getExtras();
 		int position = bundle.getInt("position", -1);
 
-		DetailPagerAdapter pagerAdapter = new DetailPagerAdapter(getSupportFragmentManager());
-		ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+		pagerAdapter = new DetailPagerAdapter(getSupportFragmentManager());
+		viewPager = (ViewPager) findViewById(R.id.pager);
 		viewPager.setAdapter(pagerAdapter);
 
 		if (position > 0) {

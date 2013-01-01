@@ -21,17 +21,17 @@ public class DetailFragment extends SherlockListFragment {
 	private ShareActionProvider shareActionProvider;
 	private Event currentEvent = null;
 	private int position;
-	
-    static DetailFragment newInstance(int position) {
-        DetailFragment fragment = new DetailFragment();
 
-        // Supply num input as an argument.
-        Bundle args = new Bundle();
-        args.putInt("position", position);
-        fragment.setArguments(args);
+	static DetailFragment newInstance(int position) {
+		DetailFragment fragment = new DetailFragment();
 
-        return fragment;
-    }
+		// Supply position as an argument
+		Bundle args = new Bundle();
+		args.putInt("position", position);
+		fragment.setArguments(args);
+
+		return fragment;
+	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -45,43 +45,45 @@ public class DetailFragment extends SherlockListFragment {
 		position = getArguments() != null ? getArguments().getInt("position") : -1;
 		return view;
 	}
-	
+
 	// makes the fragment visible to the user
 	@Override
 	public void onStart() {
 		super.onStart();
-		if (position >= 0)
+		if (position >= 0) {
 			displayEvent();
+		}
+
 	}
 
 	public void displayEvent() {
 		displayEvent(position);
 	}
-	
+
 	public void displayEvent(int position) {
 		Event event = MainActivity.events[position];
 		Context context = getActivity().getApplicationContext();
 		ArrayList<Detail> detailList = new ArrayList<Detail>();
-		
+
 		detailList.add(new Detail(event.getName(), event.getLocal()));
 		detailList.add(new DateDetail(context, getString(R.string.date_title), new Date(event.getDate()), event));
-		
+
 		int distance = event.getDistance();
 		if (distance > 0)
 			detailList.add(new Detail(getString(R.string.distance_title), Util.formatDistance(context, distance)));
-		
+
 		detailList.add(new DateDetail(context, getString(R.string.enrollment_date_title), new Date(event.getEnrollmentDate()), event));
-		
+
 		String map = event.getMap();
 		if (map != null)
 			detailList.add(new Detail(getString(R.string.map_title), map));
-		
+
 		detailList.add(new Detail(getString(R.string.enrollment_url_title), event.getEnrollmentUrl()));
 		detailList.add(new Detail(getString(R.string.description_title), event.getDescription()));
 
 		setListAdapter(new DetailAdapter(getActivity(), R.layout.detail_list_item, detailList.toArray(new Detail[detailList.size()])));
 		currentEvent = event;
-		
+
 		setShareIntent();
 	}
 
@@ -90,26 +92,28 @@ public class DetailFragment extends SherlockListFragment {
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		if (position < 0)
+			return;
+		
 		inflater.inflate(R.menu.detail_menu, menu);
-
 		MenuItem item = menu.findItem(R.id.menu_share);		
 		shareActionProvider = (ShareActionProvider)item.getActionProvider();
 		setShareIntent();
 	}
-	
-	
+
+
 	// Sharing
-	
-	private void setShareIntent() {
-	    if (shareActionProvider != null && currentEvent != null) {
-	    	Intent shareIntent = new Intent(Intent.ACTION_SEND);
+
+	public void setShareIntent() {
+		if (shareActionProvider != null && currentEvent != null) {
+			Intent shareIntent = new Intent(Intent.ACTION_SEND);
 			shareIntent.setType("text/plain");
 			shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 			shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,
-						getString(R.string.app_name) + ": " + currentEvent.getName());
+					getString(R.string.app_name) + ": " + currentEvent.getName());
 			shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, currentEvent.getDescription());	    	
-	    	
-	        shareActionProvider.setShareIntent(shareIntent);
-	    }
+
+			shareActionProvider.setShareIntent(shareIntent);
+		}
 	}
 }
