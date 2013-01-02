@@ -1,9 +1,7 @@
 package br.mello.arthur.correcuritiba;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -26,25 +24,25 @@ public class EventAdapter extends ArrayAdapter<Event> {
 	}
 
 	@Override
-	@SuppressLint("SimpleDateFormat")
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = ((Activity) context).getLayoutInflater();
 		View item = inflater.inflate(textViewResourceId, parent, false);
-		
+
 		Event event = objects[position];
-		
+
 		TextView nameText = (TextView) item.findViewById(R.id.name);
 		nameText.setText(event.getName());
-		
+
 		TextView distanceText = (TextView) item.findViewById(R.id.distance);
 		int distance = event.getDistance();
-		if (distance > 0)
-			distanceText.setText(Util.formatDistance(distance));
-		
+		distanceText.setText(Util.formatDistance(context, distance) + " - " + event.getLocal());
+
 		try {
-			int color = 0x808080;
-			
-			if (distance <= 5000) {				// 5K are easy
+			int color;
+
+			if (distance <= 0) {				// unspecified distance
+				color = 0xffc0c0c0;
+			} else if (distance <= 5000) {		// 5K are easy
 				color = 0xff7d9ec0; 
 			} else if (distance <= 10000) {		// 10K are okay		
 				color = 0xffe3cf57;
@@ -54,8 +52,8 @@ public class EventAdapter extends ArrayAdapter<Event> {
 				color = 0xffff7256;
 			} else if (distance <= 100000) {	// You better know what you're doing
 				color = 0xff8e388e;
-			} else {
-				color = 0xffc0c0c0;
+			} else {							// Seriously?
+				color = 0xff404040;
 			}
 
 			View tag = item.findViewById(R.id.tag);
@@ -65,16 +63,19 @@ public class EventAdapter extends ArrayAdapter<Event> {
 		}
 
 		TextView dateText = (TextView) item.findViewById(R.id.date);
-	
+
 		long newDate = event.getDate();
 		long today = new Date().getTime();
 		boolean oldEvent = today / 86400000 > newDate / 86400000;
-		
+
 		if (position > 0 && objects[position - 1].getDate() == newDate) {
 			dateText.setVisibility(View.GONE);
-		} else {
-			SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+			View separator = item.findViewById(R.id.separator);
+			separator.setVisibility(View.VISIBLE);
 			
+		} else {
+			java.text.DateFormat df = android.text.format.DateFormat.getDateFormat(context);
+
 			if (oldEvent) {
 				dateText.setText(df.format(newDate) + " - Evento realizado");
 
@@ -82,13 +83,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
 				dateText.setText(df.format(newDate));
 			}
 		}
-		
-		if (oldEvent) {
-			nameText.setTextColor(0xff808080);
-			dateText.setTextColor(0xffc0c0c0);
-			distanceText.setTextColor(0xff808080);
-		}
-		
+
 		return item;
 	}
 }
