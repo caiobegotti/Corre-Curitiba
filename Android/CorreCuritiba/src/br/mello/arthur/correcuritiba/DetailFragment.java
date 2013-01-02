@@ -124,9 +124,8 @@ public class DetailFragment extends SherlockFragment {
 			Intent shareIntent = new Intent(Intent.ACTION_SEND);
 			shareIntent.setType("text/plain");
 			shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-			shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,
-					getString(R.string.app_name) + ": " + currentEvent.getName());
-			shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, currentEvent.getDescription());	    	
+			shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, currentEvent.getName());
+			shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, currentEvent.getUrl());	    	
 
 			shareActionProvider.setShareIntent(shareIntent);
 		}
