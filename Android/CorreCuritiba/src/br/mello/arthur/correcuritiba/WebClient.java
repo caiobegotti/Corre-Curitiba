@@ -18,10 +18,6 @@ public class WebClient {
 		this.cache = new Cache(context);
 	}
 
-	public String get() {
-		return get(true);
-	}
-	
 	public String get(boolean useCache) {
 		
 		if (useCache && cache.isValid()) {
