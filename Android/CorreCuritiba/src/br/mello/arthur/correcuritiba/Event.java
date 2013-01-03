@@ -1,10 +1,7 @@
 package br.mello.arthur.correcuritiba;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 
-
-public class Event implements Parcelable, Comparable<Event> {
+public class Event implements Comparable<Event> {
 
 	private String name;
 	private String description;
@@ -14,8 +11,10 @@ public class Event implements Parcelable, Comparable<Event> {
 	private String url;
 	private String enrollmentUrl;
 	private long enrollmentDate;
-	
-	public Event(String name, String description, long date, int distance, String local, String url, String enrollmentUrl, long enrollmentDate) {
+	private String map;
+
+	public Event(String name, String description, long date, int distance, String local, String url,
+			String enrollmentUrl, long enrollmentDate, String map) {
 		this.name = name;
 		this.description = description;
 		this.date = date;
@@ -24,17 +23,7 @@ public class Event implements Parcelable, Comparable<Event> {
 		this.url = url;
 		this.enrollmentUrl = enrollmentUrl;
 		this.enrollmentDate = enrollmentDate;
-	}
-	
-	public Event(Parcel in) {
-		name = in.readString();
-		description = in.readString();
-		date = in.readLong();
-		distance = in.readInt();
-		local = in.readString();
-		url = in.readString();
-		enrollmentUrl = in.readString();
-		enrollmentDate = in.readLong();		
+		this.map = map;
 	}
 
 	public String getName() {
@@ -69,35 +58,10 @@ public class Event implements Parcelable, Comparable<Event> {
 		return enrollmentDate;
 	}
 	
-	// Parcelable methods
-
-	@Override
-	public int describeContents() {
-		return 0;
+	public String getMap() {
+		return map;
 	}
 
-	@Override
-	public void writeToParcel(Parcel out, int flags) {
-		out.writeString(name);
-		out.writeString(description);
-		out.writeLong(date);
-		out.writeInt(distance);
-		out.writeString(local);
-		out.writeString(url);
-		out.writeString(enrollmentUrl);
-		out.writeLong(enrollmentDate);
-	}
-	
-	public static final Creator<Event> CREATOR = new Parcelable.Creator<Event>() {
-		public Event createFromParcel(Parcel in) {
-			return new Event(in);
-		}
-
-		public Event[] newArray(int size) {
-			return new Event[size];
-		}
-	};
-	
 	// Comparable methods
 
 	@Override

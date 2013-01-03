@@ -2,7 +2,7 @@ package br.mello.arthur.correcuritiba;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v4.view.ViewPager;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
@@ -11,6 +11,8 @@ import com.actionbarsherlock.view.MenuItem;
 
 
 public class DetailActivity extends SherlockFragmentActivity {
+	private DetailPagerAdapter pagerAdapter;
+	private ViewPager viewPager;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -19,33 +21,33 @@ public class DetailActivity extends SherlockFragmentActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		Bundle bundle = getIntent().getExtras();
-		Event event = bundle.getParcelable("event");
-		
-		Log.i("asd", "event=" + event);
+		int position = bundle.getInt("position", -1);
 
-		if (event != null) {
-        	DetailFragment fragment = (DetailFragment)getSupportFragmentManager().findFragmentById(R.id.detail_fragment);
-        	if (fragment != null && fragment.isInLayout()) {
+		pagerAdapter = new DetailPagerAdapter(getSupportFragmentManager());
+		viewPager = (ViewPager) findViewById(R.id.pager);
+		viewPager.setAdapter(pagerAdapter);
 
-        		fragment.displayEvent(event);
-        	}
+		if (position > 0) {
+			viewPager.setCurrentItem(position);
 		}
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        case android.R.id.home:
-	            // app icon in action bar clicked; go home
-	            Intent intent = new Intent(this, MainActivity.class);
-	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            startActivity(intent);
-	            return true;
-	        default:
-	            return super.onOptionsItemSelected(item);
-	    }
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			// app icon in action bar clicked; go home
+			Intent intent = new Intent(this, MainActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(intent);
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
-	
+
+	// Menu
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getSupportMenuInflater();
