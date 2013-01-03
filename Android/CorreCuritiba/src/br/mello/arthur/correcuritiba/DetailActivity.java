@@ -21,15 +21,12 @@ public class DetailActivity extends SherlockFragmentActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		Bundle bundle = getIntent().getExtras();
-		int position = bundle.getInt("position", -1);
+		int position = bundle.getInt("position", 0);
 
 		pagerAdapter = new DetailPagerAdapter(getSupportFragmentManager());
 		viewPager = (ViewPager) findViewById(R.id.pager);
 		viewPager.setAdapter(pagerAdapter);
-
-		if (position > 0) {
-			viewPager.setCurrentItem(position);
-		}
+		viewPager.setCurrentItem(position);
 	}
 
 	@Override

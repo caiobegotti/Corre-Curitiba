@@ -44,7 +44,7 @@ public class DetailFragment extends SherlockFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.detail_fragment, container, false);
-		position = getArguments() != null ? getArguments().getInt("position") : -1;
+		position = getArguments() != null ? getArguments().getInt("position") : 0;
 		return view;
 	}
 
@@ -52,10 +52,7 @@ public class DetailFragment extends SherlockFragment {
 	@Override
 	public void onStart() {
 		super.onStart();
-		if (position >= 0) {
-			displayEvent();
-		}
-
+		displayEvent();
 	}
 
 	public void displayEvent() {
@@ -66,18 +63,18 @@ public class DetailFragment extends SherlockFragment {
 		View rootView = getView();
 		Event event = MainActivity.events[position];
 		Context context = getActivity().getApplicationContext();
-	
+
 		// Fill header
-		
+
 		TextView title = (TextView)rootView.findViewById(R.id.title);
 		title.setText(event.getName());
-		
+
 		TextView subtitle = (TextView)rootView.findViewById(R.id.subtitle);
 		subtitle.setText(event.getLocal());
-		
-		
+
+
 		// Fill detail list
-		
+
 		ArrayList<Detail> detailList = new ArrayList<Detail>();
 		detailList.add(new DateDetail(context, getString(R.string.date_title), new Date(event.getDate()), event));
 
@@ -106,9 +103,6 @@ public class DetailFragment extends SherlockFragment {
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		if (position < 0)
-			return;
-		
 		inflater.inflate(R.menu.detail_menu, menu);
 		MenuItem item = menu.findItem(R.id.menu_share);		
 		shareActionProvider = (ShareActionProvider)item.getActionProvider();

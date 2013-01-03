@@ -18,9 +18,7 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		if (events != null) {
 			EventsFragment fragment = (EventsFragment)getSupportFragmentManager().findFragmentById(R.id.events_fragment);
-			if (fragment != null && fragment.isInLayout()) {
-				fragment.setEvents(events);
-			}
+			fragment.setEvents(events);
 		} else {
 			Toast.makeText(this, R.string.download_error, Toast.LENGTH_LONG).show();
 		}            
