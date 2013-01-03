@@ -37,8 +37,10 @@ public class EventsFragment extends SherlockListFragment {
 	}
 
 	public void setEvents(Event[] events) {
-		Arrays.sort(events);
-		setListAdapter(new EventAdapter(getActivity(), R.layout.event_list_item, events));
+		if (events != null) {
+			Arrays.sort(events);
+			setListAdapter(new EventAdapter(getActivity(), R.layout.event_list_item, events));
+		}
 	}
 
 	@Override
@@ -72,6 +74,7 @@ public class EventsFragment extends SherlockListFragment {
 				public void onPostExecute(Activity activity) {
 					refreshItem.getActionView().clearAnimation();
 					refreshItem.setActionView(null);
+					setEvents(MainActivity.events);
 				}	    			
 			});
 			fetchEventsTask.execute();
