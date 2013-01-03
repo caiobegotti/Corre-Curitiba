@@ -44,7 +44,7 @@ public class DetailFragment extends SherlockFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.detail_fragment, container, false);
-		position = getArguments() != null ? getArguments().getInt("position") : 0;
+		position = getArguments() != null ? getArguments().getInt("position") : -1;
 		return view;
 	}
 
@@ -56,7 +56,8 @@ public class DetailFragment extends SherlockFragment {
 	}
 
 	public void displayEvent() {
-		displayEvent(position);
+		if (position >= 0)
+			displayEvent(position);
 	}
 
 	public void displayEvent(int position) {
