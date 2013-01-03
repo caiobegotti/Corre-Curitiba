@@ -1,11 +1,9 @@
 package br.mello.arthur.correcuritiba;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 
 public class FetchEvents extends AsyncTask<String, Object, List<Event>> {
