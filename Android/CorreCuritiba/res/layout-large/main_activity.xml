@@ -4,11 +4,18 @@
     android:layout_height="match_parent"
     android:orientation="horizontal" >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="2"
+        android:background="#ffeeeeee"
         android:orientation="vertical" >
+              
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/shadow_left" />
 
         <fragment
             android:id="@+id/events_fragment"
@@ -17,11 +24,7 @@
             class="br.mello.arthur.correcuritiba.EventsFragment" >
         </fragment>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/shadow_left" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <fragment
         android:id="@+id/detail_fragment"
